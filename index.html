@@ -1242,6 +1242,9 @@ img{-webkit-user-drag:none;user-select:none}
 .stm-st.fresh .tk.stamp{filter:drop-shadow(0 0 0 2px var(--peach)) drop-shadow(0 12px 22px rgba(180,87,58,.55))}
 .stm-board{isolation:isolate;z-index:0}
 .bshelf{isolation:isolate}
+.ghost.danger{color:#B4402A;border-color:color-mix(in srgb,#B4402A 40%,var(--line))}
+.ghost.danger.armed{background:#B4402A;color:#FFFFFF;border-color:#B4402A}
+.pf-reset{padding-top:12px;border-top:1px solid var(--line)}
 
 </style>
 
@@ -4071,6 +4074,7 @@ img{-webkit-user-drag:none;user-select:none}
       '<div class="seg three" role="group" aria-label="Appearance" style="margin-top:0"><span class="ind" id="pfModeInd"></span>' + modes.map(function (m) { return '<button type="button" data-pfmode="' + m + '" aria-pressed="' + (m === S.modePref) + '">' + m.charAt(0).toUpperCase() + m.slice(1) + '</button>'; }).join('') + '</div>' +
       '<div class="pf-row"><span><b>Welcome sound</b><small>Typing sound on the welcome screen</small></span><button type="button" class="switch" id="pfSound" role="switch" aria-checked="' + (LG ? LG.sound : true) + '" aria-label="Welcome sound"><i></i></button></div>' +
       '<div class="pf-row"><span><b>Show welcome screen again</b><small>See the typed greeting now</small></span><button type="button" class="ghost sm" id="pfLanding">Play</button></div>' +
+      '<div class="pf-row pf-reset"><span><b>Reset to default</b><small>Removes every stamp, trip book, favourite and setting you added, then starts fresh</small></span><button type="button" class="ghost sm danger" id="pfReset">Reset</button></div>' +
       '<p class="fine">Prototype: your account and stubs are kept in this browser only.</p>' +
       '<details class="credits"><summary>Photo credits</summary><ul>' + Object.keys(PH).map(function (k) { var t = byId(k), p = PH[k]; return '<li>' + esc(t ? t.place : k) + ': ' + esc(p[1]) + ', ' + esc(p[2]) + ', via Wikimedia Commons</li>'; }).join('') + '</ul></details>';
     setSeg('#pfModeInd', modes.indexOf(S.modePref));
@@ -4083,6 +4087,18 @@ img{-webkit-user-drag:none;user-select:none}
     if (e.target.closest('#pfOut')) { S.account = null; store('tapak.account', null); renderAvatar(); toast('Signed out'); return; }
     if (e.target.closest('#pfSound')) { lgSetSound(!LG.sound); renderProfile(); return; }
     if (e.target.closest('#pfLanding')) { openLanding(null); return; }
+    var rs = e.target.closest('#pfReset');
+    if (rs) {
+      if (!rs.classList.contains('armed')) {
+        rs.classList.add('armed'); rs.textContent = 'Tap again'; toast('Tap Reset again to remove everything you added');
+        clearTimeout(rs._t); rs._t = setTimeout(function () { rs.classList.remove('armed'); rs.textContent = 'Reset'; }, 4000);
+        return;
+      }
+      try { Object.keys(localStorage).forEach(function (k) { if (k.indexOf('tapak.') === 0) localStorage.removeItem(k); }); } catch (err) {}
+      toast('Reset done. Starting fresh\u2026');
+      setTimeout(function () { location.reload(); }, 700);
+      return;
+    }
   });
 
   /* quick light / dark switch on Home (where the avatar used to be) */
