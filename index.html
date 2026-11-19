@@ -1077,6 +1077,20 @@ img{-webkit-user-drag:none;user-select:none}
 .landing:not(.torn) .lg-type{visibility:hidden}
 .lg-go svg{width:20px;height:20px}
 
+/* landing: everything centred, big TAPAK */
+.landing{justify-content:center;align-items:center;text-align:center;padding:0 24px}
+.lg-mark{position:relative;left:auto;top:auto;align-items:center;gap:10px;margin-top:-6vh}
+.lg-logo{font:600 76px/.9 var(--serif);letter-spacing:.14em;text-transform:uppercase;margin-right:-.14em;text-shadow:0 4px 30px rgba(0,0,0,.35)}
+.lg-tag{font-size:11px;letter-spacing:.32em;margin-right:-.32em;color:rgba(255,255,255,.88)}
+.lg-mark::after{content:"";width:46px;height:2px;margin-top:8px;border-radius:2px;background:#FFD9C7;opacity:.85}
+.lg-stage{position:relative;width:100%;height:230px;margin-top:34px;display:flex;align-items:flex-start;justify-content:center}
+.lg-type{min-height:0;align-items:center;justify-content:flex-start;width:100%}
+.lg-line{font-size:46px}
+.lg-sub{max-width:300px;margin-left:auto;margin-right:auto}
+.lg-stub{left:50%;top:16px;bottom:auto;margin-left:-145px}
+.lg-go{align-self:center;margin-top:0}
+.landing.torn .lg-mark{transition:transform .8s var(--ease)}
+
 </style>
 
 <div class="stage">
@@ -1333,7 +1347,8 @@ img{-webkit-user-drag:none;user-select:none}
       <div class="lg-bg" id="lgBg" aria-hidden="true"></div>
       <div class="lg-veil" aria-hidden="true"></div>
       <button class="lg-sound" id="lgSound" type="button" aria-pressed="true" aria-label="Sound on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z"></path><path class="lg-wave" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"></path><path class="lg-x" d="M16 9l5 6M21 9l-5 6"></path></svg></button>
-      <div class="lg-mark" aria-hidden="true"><span class="lg-logo">tapak</span><span class="lg-tag">every happy place, kept</span></div>
+      <div class="lg-mark" aria-hidden="true"><span class="lg-logo">Tapak</span><span class="lg-tag">every happy place, kept</span></div>
+      <div class="lg-stage">
       <div class="lg-type" aria-live="polite">
         <h1 class="lg-line" id="lgLine"><span id="lgHello"></span><br><span id="lgName" class="lg-name"></span><i class="lg-caret" aria-hidden="true"></i></h1>
         <p class="lg-sub" id="lgSub"></p>
@@ -1342,6 +1357,7 @@ img{-webkit-user-drag:none;user-select:none}
         <span class="lg-s-main"><span class="lg-s-k">ADMIT ONE</span><b>Tap to begin</b><span class="lg-s-m" id="lgDate"></span></span>
         <span class="lg-s-tear"><span>NO.<br>000001</span></span>
       </button>
+      </div>
       <button class="primary lg-go" id="lgGo" type="button" hidden>Let&rsquo;s go<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
     </div>
 
@@ -1942,13 +1958,17 @@ img{-webkit-user-drag:none;user-select:none}
       return '<button class="chip" data-region="' + esc(r) + '" aria-pressed="' + (homeRegion === r) + '">' + (r === 'all' ? '' : flagHTML(r)) + esc(r === 'all' ? 'Everywhere' : r) + ' <i>' + n + '</i></button>';
     }).join('');
   }
-  var arcIdx = 0;
+  /* endless carousel: three copies of the list, we always sit in the middle copy, so there is a card on both sides */
+  var arcIdx = 0, ARC_N = 0, arcWrapT = 0;
+  function arcReal(k) { return ARC_N ? ((k % ARC_N) + ARC_N) % ARC_N : 0; }
   function cardScale() {
     var sc = $('#homeCards'); if (!sc) return;
     var r0 = sc.getBoundingClientRect(), mid = r0.left + r0.width / 2, cards = sc.querySelectorAll('.pcard'), best = 0, bd = 1e9;
     each(cards, function (c, i) {
       var r = c.getBoundingClientRect(), w = Math.max(1, c.offsetWidth), d = (r.left + r.width / 2 - mid) / w, a = Math.abs(d);
       if (a < bd) { bd = a; best = i; }
+      if (a > 3.2) { c.style.visibility = 'hidden'; return; }
+      c.style.visibility = '';
       var cd = Math.max(-2.4, Math.min(2.4, d)), s = Math.min(1, a);
       c.style.transform = 'perspective(900px) translateX(' + (-cd * 34).toFixed(1) + 'px) translateZ(' + (-Math.min(2.4, a) * 90).toFixed(1) + 'px) rotateY(' + (-cd * 28).toFixed(2) + 'deg)';
       c.style.zIndex = String(100 - Math.round(a * 10));
@@ -1956,14 +1976,20 @@ img{-webkit-user-drag:none;user-select:none}
       if (!RM) each(c.querySelector('.phx').children, function (p) { p.style.transform = 'translateX(' + (cd * -28).toFixed(1) + 'px) scale(1.16)'; });
     });
     arcIdx = best;
-    var t = cards[best] && byId(cards[best].dataset.id), now = $('#arcNow');
-    if (now) now.innerHTML = t ? '<span class="phx">' + photoHTML(t) + '</span><span class="an-tx"><b>' + esc(t.city) + '</b><span>' + esc(t.country) + ' · ' + (best + 1) + ' of ' + cards.length + '</span></span>' + '<span class="an-dots">' + Array.prototype.map.call(cards, function (x, i) { return '<i' + (i === best ? ' class="on"' : '') + '></i>'; }).join('') + '</span>' : '';
-    if ($('#arcPrev')) { $('#arcPrev').disabled = best <= 0; $('#arcNext').disabled = best >= cards.length - 1; }
+    var real = arcReal(best), t = cards[best] && byId(cards[best].dataset.id), now = $('#arcNow');
+    if (now) now.innerHTML = t ? '<span class="phx">' + photoHTML(t) + '</span><span class="an-tx"><b>' + esc(t.city) + '</b><span>' + esc(t.country) + ' · ' + (real + 1) + ' of ' + ARC_N + '</span></span>' + '<span class="an-dots">' + Array.apply(null, Array(ARC_N)).map(function (x, i) { return '<i' + (i === real ? ' class="on"' : '') + '></i>'; }).join('') + '</span>' : '';
   }
+  function arcLeftFor(k) { var sc = $('#homeCards'), c = sc.querySelectorAll('.pcard')[k]; return c ? c.offsetLeft - (sc.clientWidth - c.offsetWidth) / 2 : 0; }
+  function arcJump(k) { var sc = $('#homeCards'); sc.style.scrollSnapType = 'none'; sc.style.scrollBehavior = 'auto'; sc.scrollLeft = arcLeftFor(k); cardScale(); requestAnimationFrame(function () { sc.style.scrollSnapType = ''; sc.style.scrollBehavior = ''; }); }
+  function arcWrap() {
+    if (ARC_N < 2) return;
+    if (arcIdx < ARC_N) arcJump(arcIdx + ARC_N); else if (arcIdx >= ARC_N * 2) arcJump(arcIdx - ARC_N);
+  }
+  function arcRecenter() { if (ARC_N) arcJump(ARC_N + arcReal(arcIdx)); }
   function arcGo(i) {
     var sc = $('#homeCards'), cards = sc.querySelectorAll('.pcard'); if (!cards.length) return;
     i = Math.max(0, Math.min(cards.length - 1, i));
-    var c = cards[i]; sc.scrollTo({ left: c.offsetLeft - (sc.clientWidth - c.offsetWidth) / 2, behavior: RM ? 'auto' : 'smooth' });
+    sc.scrollTo({ left: arcLeftFor(i), behavior: RM ? 'auto' : 'smooth' });
   }
   $('#arcPrev').addEventListener('click', function () { arcGo(arcIdx - 1); });
   $('#arcNext').addEventListener('click', function () { arcGo(arcIdx + 1); });
@@ -1971,25 +1997,33 @@ img{-webkit-user-drag:none;user-select:none}
   /* tapping a side card brings it to the middle; tapping the middle card opens it */
   $('#homeCards').addEventListener('click', function (e) {
     var pc = e.target.closest('.pcard'); if (!pc || e.target.closest('[data-fav]')) return;
-    var i = +pc.dataset.i; if (i !== arcIdx) { e.stopPropagation(); arcGo(i); }
+    var i = +pc.dataset.k; if (i !== arcIdx) { e.stopPropagation(); arcGo(i); }
   }, true);
   function renderCards(anim) {
-    var list = homeFiltered(), el = $('#homeCards');
-    $('#cardsMeta').textContent = plural(list.length, 'place') + ' · ' + plural(cityKeys(list).length, 'city', 'cities');
-    el.innerHTML = list.length ? list.slice(0, 12).map(function (t, i, a) { return pcardHTML(t, i, a); }).join('') : '<div class="emptycard">No places match “' + esc(homeQuery) + '” yet. Try a city, a country or a type like food.</div>';
-    el.scrollLeft = 0; cardScale();
-    if (anim !== false && !RM) {
+    var list = homeFiltered().slice(0, 12), el = $('#homeCards'), n = list.length;
+    $('#cardsMeta').textContent = plural(homeFiltered().length, 'place') + ' · ' + plural(cityKeys(homeFiltered()).length, 'city', 'cities');
+    ARC_N = n;
+    var copies = n > 1 ? 3 : 1, html = '';
+    for (var c = 0; c < copies; c++) list.forEach(function (t, i) { html += pcardHTML(t, i, list).replace('<article class="pcard"', '<article class="pcard" data-k="' + (c * n + i) + '"'); });
+    el.innerHTML = n ? html : '<div class="emptycard">No places match “' + esc(homeQuery) + '” yet. Try a city, a country or a type like food.</div>';
+    $('.arc-dock').hidden = !n;
+    var start = copies === 3 ? n : 0;
+    arcIdx = start; arcJump(start);
+    if (anim !== false && !RM && n) {
       el.style.scrollSnapType = 'none';
-      var last = null;
-      each(el.querySelectorAll('.pcard'), function (c, i) {
-        if (i > 2) return;
-        last = c.animate([{ translate: (90 + i * 40) + 'px 0', rotate: (i ? 4 : 2) + 'deg' }, { translate: '0 0', rotate: '0deg' }], { duration: 850, delay: i * 90, easing: SPRING, fill: 'backwards' });
+      var cards = el.querySelectorAll('.pcard'), last = null;
+      [start - 1, start, start + 1].forEach(function (k, i) {
+        var cd = cards[k]; if (!cd) return;
+        last = cd.animate([{ translate: (k === start - 1 ? -60 : 90 + i * 30) + 'px 30px', rotate: (k === start - 1 ? -5 : 4) + 'deg', opacity: 0 }, { translate: '0 0', rotate: '0deg', opacity: 1 }], { duration: 900, delay: i * 90, easing: SPRING, fill: 'backwards' });
       });
-      if (last) last.onfinish = function () { el.style.scrollSnapType = ''; el.scrollLeft = 0; cardScale(); };
-      else el.style.scrollSnapType = '';
+      if (last) last.onfinish = function () { el.style.scrollSnapType = ''; arcJump(start); };
     }
   }
-  $('#homeCards').addEventListener('scroll', function () { requestAnimationFrame(cardScale); }, { passive: true });
+  $('#homeCards').addEventListener('scroll', function () {
+    requestAnimationFrame(cardScale);
+    clearTimeout(arcWrapT); arcWrapT = setTimeout(arcWrap, 160);
+  }, { passive: true });
+  if ('onscrollend' in window) $('#homeCards').addEventListener('scrollend', function () { clearTimeout(arcWrapT); arcWrap(); });
   $('#homeSearch').addEventListener('input', function (e) { homeQuery = e.target.value; renderCards(false); });
 
   function renderTypes() {
@@ -3861,7 +3895,7 @@ img{-webkit-user-drag:none;user-select:none}
     var sc = $(SCREENS[name]); if (name !== 'map') { sc.style.scrollBehavior = 'auto'; sc.scrollTop = 0; sc.style.scrollBehavior = ''; }
     if (name === 'stubs') { setView(S.view); if (flashId) renderAll(flashId); } else stopShelf();
     if (name === 'map') mapEnter();
-    if (name === 'home') layoutDeck(null, true);
+    if (name === 'home') { layoutDeck(null, true); requestAnimationFrame(arcRecenter); }
     if (name !== 'map') sc.animate([{ transform: 'translateY(18px)' }, { transform: 'none' }], { duration: D(450), easing: EASE });
     store('tapak.tab', name);
   }
