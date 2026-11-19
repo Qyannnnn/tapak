@@ -994,6 +994,89 @@ img{-webkit-user-drag:none;user-select:none}
 .rl-acts{display:flex;flex-direction:column;gap:10px;margin-top:14px}
 .reel.ended .rl-low{opacity:0 !important}
 
+/* ===== Home: light / dark switch ===== */
+.modebtn{position:relative;width:46px;height:46px;flex:none;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--text);display:grid;place-items:center;cursor:pointer;overflow:hidden;box-shadow:0 6px 14px -8px rgba(40,30,20,.35)}
+.modebtn svg{width:22px;height:22px;overflow:visible}
+.modebtn .mb-sun,.modebtn .mb-moon{transform-origin:12px 12px;transition:transform .6s var(--spring),opacity .35s}
+.modebtn .mb-moon{opacity:0;transform:rotate(-70deg) scale(.4)}
+.modebtn.dark .mb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+.modebtn.dark .mb-moon{opacity:1;transform:none}
+.modebtn.dark{color:#F3D9A4}
+.modebtn:focus-visible{outline:3px solid var(--peach);outline-offset:2px}
+
+/* ===== tab: profile ===== */
+.tab-av{width:25px;height:25px;border-radius:50%;display:grid;place-items:center}
+.tab-av svg{width:23px;height:23px}
+.tab-av.on{background:var(--peach);color:var(--peach-ink);font:800 10px/1 var(--body);box-shadow:0 0 0 2px var(--card),0 0 0 3.5px currentColor}
+.tab[aria-current="page"] .tab-av.on{box-shadow:0 0 0 2px var(--card),0 0 0 3.5px var(--accent-text)}
+
+/* ===== profile screen ===== */
+.pf-head{display:flex;align-items:center;gap:16px;margin-top:4px}
+.pf-av{width:78px;height:78px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--peach);color:var(--peach-ink);font:600 30px/1 var(--serif);box-shadow:0 0 0 4px var(--app),0 0 0 6px color-mix(in srgb,var(--peach) 55%,transparent),0 16px 26px -14px rgba(40,30,20,.6)}
+.pf-av.guest{background:var(--card);color:var(--muted);box-shadow:0 0 0 4px var(--app),0 0 0 6px var(--line)}
+.pf-av svg{width:36px;height:36px}
+.pf-id{min-width:0;display:flex;flex-direction:column;gap:4px}
+.pf-id .h1{margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pf-sub{margin:0;font-size:13px;line-height:1.45;color:var(--muted)}
+.pf-acts{display:flex;gap:10px;margin-top:16px}
+.pf-acts>*{flex:1}
+.pf-nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:16px}
+.pf-nums div{display:flex;flex-direction:column;gap:4px;padding:14px 10px;border-radius:20px;background:var(--card);border:1px solid var(--line);text-align:center}
+.pf-nums b{font:600 28px/1 var(--serif)}
+.pf-nums span{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.pf-set{display:flex;flex-direction:column;gap:12px;margin-top:12px;padding:16px;border-radius:24px;background:var(--card);border:1px solid var(--line)}
+.pf-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pf-row>span{display:flex;flex-direction:column;gap:2px;min-width:0}
+.pf-row b{font-size:14.5px;font-weight:800}
+.pf-row small{font-size:12px;color:var(--muted)}
+.pf-set .fine{margin-top:0}
+.pf-set .seg{margin-top:-2px}
+.ghost.sm{height:38px;padding:0 16px;font-size:13px}
+.switch{position:relative;width:50px;height:30px;flex:none;border-radius:15px;border:0;background:var(--line);cursor:pointer;transition:background .3s}
+.switch i{position:absolute;left:3px;top:3px;width:24px;height:24px;border-radius:50%;background:#FFFFFF;box-shadow:0 2px 6px rgba(0,0,0,.25);transition:transform .35s var(--spring)}
+.switch[aria-checked="true"]{background:var(--peach)}
+.switch[aria-checked="true"] i{transform:translateX(20px)}
+.switch:focus-visible{outline:3px solid var(--peach);outline-offset:2px}
+
+/* ===== landing: typed greeting ===== */
+.landing{position:absolute;inset:0;z-index:90;display:flex;flex-direction:column;justify-content:flex-end;padding:0 26px calc(40px + env(safe-area-inset-bottom));color:#FFFFFF;background:#1C1A18;overflow:hidden}
+.landing[hidden]{display:none}
+.lg-bg{position:absolute;inset:0}
+.lg-bg .phx>*{transform:scale(1.12)}
+@media (prefers-reduced-motion:no-preference){.lg-bg .phx>*{animation:lgDrift 18s ease-in-out infinite alternate}}
+@keyframes lgDrift{from{transform:scale(1.12) translate(0,0)}to{transform:scale(1.22) translate(-2%,-3%)}}
+.lg-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,14,12,.55) 0%,rgba(18,14,12,.15) 30%,rgba(18,14,12,.45) 58%,rgba(18,14,12,.92) 100%)}
+.lg-sound{position:absolute;right:18px;top:calc(18px + env(safe-area-inset-top));z-index:2;width:42px;height:42px;border-radius:50%;border:0;color:#FFFFFF;display:grid;place-items:center;cursor:pointer;background:rgba(255,255,255,.16);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}
+.lg-sound svg{width:20px;height:20px}
+.lg-sound .lg-x{display:none}
+.lg-sound.off .lg-x{display:inline}
+.lg-sound.off .lg-wave{display:none}
+.lg-mark{position:absolute;left:26px;top:calc(22px + env(safe-area-inset-top));z-index:1;display:flex;flex-direction:column;gap:3px}
+.lg-logo{font:600 26px/1 var(--serif);letter-spacing:.01em}
+.lg-tag{font:600 9.5px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+.lg-type{position:relative;z-index:1;min-height:200px;display:flex;flex-direction:column;justify-content:flex-end}
+.lg-line{margin:0;font:600 50px/1.02 var(--serif);letter-spacing:-.01em;text-shadow:0 2px 20px rgba(0,0,0,.35)}
+.lg-line #lgHello{font-size:28px;font-family:var(--body);font-weight:700;letter-spacing:-.01em;color:rgba(255,255,255,.92)}
+.lg-name{font-style:italic;color:#FFD9C7}
+.lg-caret{display:inline-block;width:3px;height:.9em;margin-left:4px;vertical-align:-.08em;background:#FFD9C7;border-radius:2px;opacity:0}
+.landing.typing .lg-caret{opacity:1}
+@media (prefers-reduced-motion:no-preference){.landing.typed .lg-caret{opacity:1;animation:lgBlink 1s steps(1) infinite}}
+@keyframes lgBlink{50%{opacity:0}}
+.lg-sub{margin:14px 0 0;min-height:3em;font-size:15px;line-height:1.5;color:rgba(255,255,255,.88)}
+.lg-stub{position:absolute;left:50%;bottom:calc(36px + env(safe-area-inset-bottom));margin-left:-145px;z-index:2;display:flex;width:290px;height:112px;padding:0;border:0;background:none;cursor:pointer;transform:rotate(-3deg);filter:drop-shadow(0 18px 24px rgba(0,0,0,.45))}
+.lg-stub:focus-visible{outline:2px solid rgba(255,217,199,.7);outline-offset:6px;border-radius:16px}
+.lg-s-main{flex:1;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:0 20px;text-align:left;color:#2A2622;background:#F6F1E9;border-radius:14px 0 0 14px;-webkit-mask:radial-gradient(circle 10px at 100% 0,transparent 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 10px at 100% 100%,transparent 98%,#000) bottom/100% 51% no-repeat;mask:radial-gradient(circle 10px at 100% 0,transparent 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 10px at 100% 100%,transparent 98%,#000) bottom/100% 51% no-repeat}
+.lg-s-k{font:600 9.5px/1 var(--mono);letter-spacing:.22em;color:#B4573A}
+.lg-s-main b{font:600 30px/1 var(--serif)}
+.lg-s-m{font:500 10px/1 var(--mono);letter-spacing:.12em;color:#7D7268}
+.lg-s-tear{width:78px;display:grid;place-items:center;background:#B4573A;color:#FFFFFF;border-radius:0 14px 14px 0;border-left:2px dashed rgba(255,255,255,.55);font:600 10px/1.5 var(--mono);letter-spacing:.1em;text-align:center;-webkit-mask:radial-gradient(circle 10px at 0 0,transparent 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 10px at 0 100%,transparent 98%,#000) bottom/100% 51% no-repeat;mask:radial-gradient(circle 10px at 0 0,transparent 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 10px at 0 100%,transparent 98%,#000) bottom/100% 51% no-repeat}
+@media (prefers-reduced-motion:no-preference){.landing:not(.torn) .lg-stub{animation:lgWiggle 3.2s ease-in-out 1.6s infinite}}
+@keyframes lgWiggle{0%,86%,100%{rotate:0deg}90%{rotate:-2deg}94%{rotate:2deg}}
+.lg-go{position:relative;z-index:1;align-self:flex-start;margin-top:18px;gap:10px}
+.landing:not(.typed) .lg-go{visibility:hidden}
+.landing:not(.torn) .lg-type{visibility:hidden}
+.lg-go svg{width:20px;height:20px}
+
 </style>
 
 <div class="stage">
@@ -1002,11 +1085,11 @@ img{-webkit-user-drag:none;user-select:none}
     <h1>Every happy place, kept as a ticket stub.</h1>
     <p>A playable prototype of a travel keepsake app. Sign in, collect stubs from any city in the world, see them on a globe, and replay each trip as a book. Anything you make stays in this browser.</p>
     <ul>
-      <li><b>01</b><span>Home: swipe the photo cards, tap a heart to save, or open the big trip photo.</span></li>
+      <li><b>01</b><span>A welcome screen types a greeting with your name. Tap the ticket to begin. On Home the sun and moon button switches light and dark.</span></li>
       <li><b>02</b><span>Map: press &minus; for a spinning globe, + to zoom down to cities. In the downloaded file it zooms right down to streets and shops.</span></li>
       <li><b>03</b><span>Make: add a stub in four steps, or start a new trip book first. Places file themselves under country and city.</span></li>
       <li><b>04</b><span>Stubs: Places, Tickets or Trip books. A trip book opens into a stop-by-stop timeline.</span></li>
-      <li><b>05</b><span>Recap: replay your year as a story or a travel reel, or step into the memory space. Account and light or dark mode sit behind the avatar.</span></li>
+      <li><b>05</b><span>Profile: your account, stats and settings, with Recap inside it. Replay your year as a story or a travel reel, or step into the memory space.</span></li>
     </ul>
   </aside>
 
@@ -1016,7 +1099,7 @@ img{-webkit-user-drag:none;user-select:none}
     <section class="screen" id="s-home" aria-label="Home">
       <div class="greet">
         <div><small id="hello">Good evening,</small><b id="helloName">traveller</b></div>
-        <button class="avatar guest" id="avatarBtn" aria-label="Account and settings"></button>
+        <button class="modebtn" id="modeBtn" type="button" aria-label="Switch to dark mode" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><g class="mb-sun" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"></path></g><path class="mb-moon" d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" fill="currentColor"></path></svg></button>
       </div>
       <div class="search">
         <label for="homeSearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg><span class="sr">Search your places</span><input id="homeSearch" type="search" placeholder="Search your places" autocomplete="off"></label>
@@ -1056,7 +1139,7 @@ img{-webkit-user-drag:none;user-select:none}
         <div class="stack" id="teaserStack" aria-hidden="true"></div>
         <h3 id="teaserH">16 happy memories</h3>
         <p id="teaserP">Play them back as a story.</p>
-        <button class="primary" data-go="recap" style="align-self:flex-start;position:relative"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"></path></svg>Open recap</button>
+        <button class="primary" data-replay-open="1" style="align-self:flex-start;position:relative"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"></path></svg>Open recap</button>
       </div>
     </section>
 
@@ -1195,10 +1278,15 @@ img{-webkit-user-drag:none;user-select:none}
     </section>
 
     <!-- RECAP -->
-    <section class="screen" id="s-recap" aria-label="Recap" hidden>
-      <span class="eyebrow">Look back</span>
-      <h1 class="h1 sm">Recap</h1>
-      <p class="sub">The sweet bits of your year, ready to replay one day.</p>
+    <section class="screen" id="s-recap" aria-label="Profile" hidden>
+      <div class="pf-head">
+        <span class="pf-av" id="pfAv" aria-hidden="true"></span>
+        <div class="pf-id"><span class="eyebrow">Profile</span><h1 class="h1 sm" id="pfName">traveller</h1><p class="pf-sub" id="pfSub"></p></div>
+      </div>
+      <div class="pf-acts" id="pfActs"></div>
+      <div class="pf-nums" id="pfNums"></div>
+      <div class="sec" id="recapSec"><div><span class="eyebrow">Look back</span><h2>Recap</h2></div></div>
+      <p class="sub" style="margin-top:4px">The sweet bits of your year, ready to replay one day.</p>
       <div class="playhero">
         <div class="collage" id="recapCollage" aria-hidden="true"></div>
         <span class="eyebrow">2026 story</span>
@@ -1213,6 +1301,8 @@ img{-webkit-user-drag:none;user-select:none}
       <div class="months"><div class="mcols" id="mcols"></div><div class="mlabels" id="mlabels"></div><div class="mleg" id="mleg"></div></div>
       <div class="sec"><div><span class="eyebrow">Trips</span><h2>Replay a trip</h2></div></div>
       <div class="trips" id="trips"></div>
+      <div class="sec"><div><span class="eyebrow">Settings</span><h2>Appearance and account</h2></div></div>
+      <div class="pf-set" id="pfSet"></div>
     </section>
 
     <!-- TRIP BOOK -->
@@ -1236,6 +1326,23 @@ img{-webkit-user-drag:none;user-select:none}
       </div>
       <div class="bk-cta" id="bkCta"><button class="darkpill" id="bkPlay">Play this trip<i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></i></button></div>
       <div class="bk-flap" id="bkFlap"><div class="bk-front" id="bkFront"></div><div class="bk-back"></div></div>
+    </div>
+
+    <!-- LANDING -->
+    <div class="landing" id="landing" role="dialog" aria-modal="true" aria-labelledby="lgLine">
+      <div class="lg-bg" id="lgBg" aria-hidden="true"></div>
+      <div class="lg-veil" aria-hidden="true"></div>
+      <button class="lg-sound" id="lgSound" type="button" aria-pressed="true" aria-label="Sound on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z"></path><path class="lg-wave" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"></path><path class="lg-x" d="M16 9l5 6M21 9l-5 6"></path></svg></button>
+      <div class="lg-mark" aria-hidden="true"><span class="lg-logo">tapak</span><span class="lg-tag">every happy place, kept</span></div>
+      <div class="lg-type" aria-live="polite">
+        <h1 class="lg-line" id="lgLine"><span id="lgHello"></span><br><span id="lgName" class="lg-name"></span><i class="lg-caret" aria-hidden="true"></i></h1>
+        <p class="lg-sub" id="lgSub"></p>
+      </div>
+      <button class="lg-stub" id="lgStart" type="button" aria-label="Tap to open Tapak">
+        <span class="lg-s-main"><span class="lg-s-k">ADMIT ONE</span><b>Tap to begin</b><span class="lg-s-m" id="lgDate"></span></span>
+        <span class="lg-s-tear"><span>NO.<br>000001</span></span>
+      </button>
+      <button class="primary lg-go" id="lgGo" type="button" hidden>Let&rsquo;s go<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
     </div>
 
     <!-- INSTAGRAM-STYLE STORY -->
@@ -1384,7 +1491,7 @@ img{-webkit-user-drag:none;user-select:none}
       <button class="tab" data-tab="map"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"></path><path d="M9 4v14M15 6v14"></path></svg>Map</button>
       <button class="tab make" id="makeTab" aria-expanded="false" aria-controls="msheet"><span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span>Make</button>
       <button class="tab" data-tab="stubs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v3a2 2 0 0 0 0 4v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a2 2 0 0 0 0-4z"></path><path d="M15 6v12" stroke-dasharray="2 2.5"></path></svg>Stubs</button>
-      <button class="tab" data-tab="recap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M10 8.5l5.5 3.5-5.5 3.5z" fill="currentColor"></path></svg>Recap</button>
+      <button class="tab" data-tab="profile"><span class="tab-av" id="tabAv" aria-hidden="true"></span>Profile</button>
     </nav>
   </div>
 </div>
@@ -1745,11 +1852,12 @@ img{-webkit-user-drag:none;user-select:none}
   function initials(name) { return (name || '').trim().split(/\s+/).slice(0, 2).map(function (w) { return w.charAt(0).toUpperCase(); }).join('') || 'T'; }
   function greeting() { var h = new Date().getHours(); return h < 12 ? 'Good morning,' : h < 18 ? 'Good afternoon,' : 'Good evening,'; }
   function renderAvatar() {
-    var b = $('#avatarBtn'), a = S.account;
+    var a = S.account;
     $('#hello').textContent = greeting();
-    if (a) { b.className = 'avatar'; b.textContent = initials(a.name); b.setAttribute('aria-label', 'Account: ' + a.name); $('#helloName').textContent = a.name.split(' ')[0]; }
-    else { b.className = 'avatar guest'; b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>'; b.setAttribute('aria-label', 'Log in or settings'); $('#helloName').textContent = 'traveller'; }
+    $('#helloName').textContent = a ? a.name.split(' ')[0] : 'traveller';
+    renderProfile(); syncModeBtn();
   }
+
 
   /* hero: trip books, auto-swiping and swipeable */
   var heroI = 0, heroEl = $('#hero'), heroLast = 0, heroDrag = null;
@@ -1887,7 +1995,7 @@ img{-webkit-user-drag:none;user-select:none}
   function renderTypes() {
     $('#typeGrid').innerHTML = CAT_KEYS.map(function (k) {
       return '<button data-type="' + k + '" style="--cc:' + CATS[k].color + '"><span class="ti">' + catIcon(k) + '</span><b>' + CATS[k].label + '</b><span>' + plural(catCount(k), 'stub') + '</span></button>';
-    }).join('') + '<button data-go="recap" style="--cc:var(--accent-text)"><span class="ti"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></span><b>Recap</b><span>Your year</span></button>';
+    }).join('') + '<button data-replay-open="1" style="--cc:var(--accent-text)"><span class="ti"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></span><b>Recap</b><span>Your year</span></button>';
   }
   function renderTripRow() {
     $('#tripRow').innerHTML = tripIds().map(function (tid) {
@@ -2971,7 +3079,6 @@ img{-webkit-user-drag:none;user-select:none}
     if (a) $('#acOut').addEventListener('click', function () { S.account = null; store('tapak.account', null); renderAvatar(); closeSheet(); toast('Signed out'); });
     else $('#acIn').addEventListener('click', function () { closeSheet(); openAuth(); });
   }
-  $('#avatarBtn').addEventListener('click', openAccount);
 
   var authMode = 'login', auth = $('#auth');
   function setAuthMode(m) {
@@ -3597,6 +3704,147 @@ img{-webkit-user-drag:none;user-select:none}
       else if (e.key === 'ArrowLeft') { RL.t = Math.max(0, RL.t - RL_SHOT); e.preventDefault(); }
     });
   }, true);
+
+  /* ====================== LANDING (typed greeting with sound) ====================== */
+  var LG = { ctx: null, sound: store('tapak.sound') !== false, done: null, timers: [] }, landing = $('#landing');
+  function lgAudio() {
+    if (!LG.sound) return null;
+    try { if (!LG.ctx) LG.ctx = new (window.AudioContext || window.webkitAudioContext)(); if (LG.ctx.state === 'suspended') LG.ctx.resume(); } catch (e) { LG.ctx = null; }
+    return LG.ctx;
+  }
+  function lgClick(space) {
+    var c = lgAudio(); if (!c) return;
+    var now = c.currentTime, len = .035, buf = c.createBuffer(1, Math.floor(c.sampleRate * len), c.sampleRate), d = buf.getChannelData(0);
+    for (var i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 3);
+    var src = c.createBufferSource(); src.buffer = buf;
+    var bp = c.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = (space ? 900 : 1800) + Math.random() * 900; bp.Q.value = 1.2;
+    var g = c.createGain(); g.gain.setValueAtTime(space ? .22 : .32, now); g.gain.exponentialRampToValueAtTime(.001, now + len);
+    var o = c.createOscillator(), og = c.createGain(); o.type = 'square'; o.frequency.value = space ? 140 : 220 + Math.random() * 60;
+    og.gain.setValueAtTime(.025, now); og.gain.exponentialRampToValueAtTime(.0001, now + .02);
+    src.connect(bp); bp.connect(g); g.connect(c.destination); o.connect(og); og.connect(c.destination);
+    src.start(now); o.start(now); o.stop(now + .03);
+  }
+  function lgChime() {
+    var c = lgAudio(); if (!c) return;
+    [659.25, 987.77, 1318.5].forEach(function (f, i) {
+      var t = c.currentTime + i * .09, o = c.createOscillator(), g = c.createGain();
+      o.type = 'sine'; o.frequency.value = f;
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.09, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + 1.1);
+      o.connect(g); g.connect(c.destination); o.start(t); o.stop(t + 1.2);
+    });
+  }
+  function lgTear() {
+    var c = lgAudio(); if (!c) return;
+    var len = .32, buf = c.createBuffer(1, Math.floor(c.sampleRate * len), c.sampleRate), d = buf.getChannelData(0);
+    for (var i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * (Math.random() < .3 ? 1 : .3) * (1 - i / d.length);
+    var s = c.createBufferSource(); s.buffer = buf; var hp = c.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 2200;
+    var g = c.createGain(); g.gain.value = .12; s.connect(hp); hp.connect(g); g.connect(c.destination); s.start();
+  }
+  function lgSetSound(on) {
+    LG.sound = on; store('tapak.sound', on);
+    var b = $('#lgSound'); b.setAttribute('aria-pressed', on); b.setAttribute('aria-label', on ? 'Sound on' : 'Sound off'); b.classList.toggle('off', !on);
+  }
+  function lgName() { return S.account && S.account.name ? S.account.name.split(' ')[0] : 'traveller'; }
+  function openLanding(done) {
+    LG.done = done; landing.hidden = false; lgSetSound(LG.sound);
+    var t = byId('j2') || S.tickets[0], d = new Date();
+    $('#lgBg').innerHTML = '<span class="phx">' + photoHTML(t) + '</span>';
+    $('#lgDate').textContent = d.getDate() + ' ' + MON[d.getMonth()].toUpperCase() + ' ' + d.getFullYear();
+    $('#lgHello').textContent = ''; $('#lgName').textContent = ''; $('#lgSub').textContent = '';
+    landing.classList.remove('typing', 'typed', 'torn');
+    $('#lgGo').hidden = false; $('#lgStart').hidden = false;
+    if (!RM) {
+      each(landing.querySelectorAll('.lg-mark > *'), function (el, i) { el.animate([{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'none' }], { duration: 800, delay: 150 + i * 120, easing: EASE, fill: 'backwards' }); });
+      $('#lgStart').animate([{ opacity: 0, transform: 'translateY(60px) rotate(-8deg)' }, { opacity: 1, transform: 'rotate(-3deg)' }], { duration: 1000, delay: 450, easing: SPRING, fill: 'backwards' });
+    }
+  }
+  function lgType() {
+    var hello = greeting(), name = lgName() + '.', el1 = $('#lgHello'), el2 = $('#lgName'), n = S.tickets.length;
+    var sub = n ? plural(n, 'happy place', 'happy places') + ' kept across ' + plural(countries().length, 'country', 'countries') + '. Where to next?' : 'Your first happy place is waiting.';
+    landing.classList.add('typing');
+    var seq = [], k;
+    for (k = 1; k <= hello.length; k++) seq.push([el1, hello.slice(0, k), hello.charAt(k - 1)]);
+    seq.push(null);
+    for (k = 1; k <= name.length; k++) seq.push([el2, name.slice(0, k), name.charAt(k - 1)]);
+    var i = 0;
+    (function step() {
+      if (landing.hidden) return;
+      var s = seq[i++];
+      if (s === undefined) {
+        landing.classList.remove('typing'); landing.classList.add('typed'); lgChime();
+        $('#lgSub').textContent = sub;
+        if (!RM) { $('#lgSub').animate([{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }], { duration: 700, easing: EASE }); $('#lgGo').animate([{ opacity: 0, transform: 'translateY(16px) scale(.9)' }, { opacity: 1, transform: 'none' }], { duration: 700, delay: 200, easing: SPRING, fill: 'backwards' }); }
+        LG.timers.push(setTimeout(lgEnter, 4200));
+        return;
+      }
+      if (s === null) { LG.timers.push(setTimeout(step, RM ? 0 : 380)); return; }
+      var cr = landing.querySelector('.lg-caret'); if (cr && s[0].nextSibling !== cr) s[0].after(cr);
+      s[0].textContent = s[1]; if (!RM) lgClick(s[2] === ' ');
+      var ch = s[2], wait = RM ? 0 : (ch === ',' || ch === '.' ? 260 : ch === ' ' ? 120 : 62 + Math.random() * 70);
+      LG.timers.push(setTimeout(step, wait));
+    })();
+  }
+  function lgEnter() {
+    if (landing.hidden || landing.classList.contains('leaving')) return;
+    LG.timers.forEach(clearTimeout); LG.timers = [];
+    landing.classList.add('leaving');
+    var fin = function () { landing.hidden = true; landing.classList.remove('leaving'); var cb = LG.done; LG.done = null; if (cb) cb(); };
+    if (RM) { fin(); return; }
+    var a = landing.animate([{ clipPath: 'inset(0 0 0 0 round 0)', opacity: 1 }, { clipPath: 'inset(0 0 100% 0 round 0 0 40px 40px)', opacity: 1 }], { duration: 750, easing: 'cubic-bezier(.76,0,.18,1)' });
+    a.onfinish = fin;
+    var home = $('#s-home'); if (home && !home.hidden) home.animate([{ transform: 'translateY(40px) scale(.97)', opacity: .3 }, { transform: 'none', opacity: 1 }], { duration: 900, delay: 200, easing: EASE, fill: 'backwards' });
+  }
+  $('#lgStart').addEventListener('click', function () {
+    lgAudio(); lgTear(); landing.classList.add('torn');
+    var st = this;
+    if (RM) { st.hidden = true; lgType(); return; }
+    st.querySelector('.lg-s-tear').animate([{ transform: 'none' }, { transform: 'translate(40px,-20px) rotate(22deg)', opacity: 0 }], { duration: 600, easing: 'cubic-bezier(.3,.6,.3,1)', fill: 'forwards' });
+    st.querySelector('.lg-s-main').animate([{ transform: 'none' }, { transform: 'translate(-20px,30px) rotate(-10deg)', opacity: 0 }], { duration: 650, delay: 80, easing: 'cubic-bezier(.4,0,.7,.3)', fill: 'forwards' }).onfinish = function () { st.hidden = true; st.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); }); };
+    setTimeout(lgType, 380);
+  });
+  $('#lgGo').addEventListener('click', lgEnter);
+  $('#lgSound').addEventListener('click', function () { lgSetSound(!LG.sound); if (LG.sound) lgClick(false); });
+  landing.addEventListener('keydown', function (e) { if (e.key === 'Escape') { e.stopPropagation(); lgEnter(); } });
+
+  /* ====================== PROFILE (replaces the avatar sheet; Recap lives here) ====================== */
+  function personSVG() { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>'; }
+  function renderProfile() {
+    var a = S.account, modes = ['system', 'light', 'dark'];
+    $('#pfAv').innerHTML = a ? '<span>' + esc(initials(a.name)) + '</span>' : personSVG();
+    $('#pfAv').classList.toggle('guest', !a);
+    $('#pfName').textContent = a ? a.name : 'traveller';
+    $('#pfSub').textContent = a ? (a.email || 'Signed in with ' + a.via) + ' · member since ' + a.since : 'Browsing as a guest. Log in to keep everything under your name.';
+    $('#pfActs').innerHTML = a ? '<button class="ghost" id="pfOut">Sign out</button>' : '<button class="primary" id="pfIn">Log in or create account</button>';
+    $('#pfNums').innerHTML = '<div><b>' + S.tickets.length + '</b><span>Stubs</span></div><div><b>' + cityKeys().length + '</b><span>Cities</span></div><div><b>' + countries().length + '</b><span>Countries</span></div><div><b>' + tripIds().filter(function (x) { return x !== 'mine'; }).length + '</b><span>Trip books</span></div>';
+    $('#pfSet').innerHTML = '<div class="pf-row"><span><b>Appearance</b><small>Follow your phone, or pick one</small></span></div>' +
+      '<div class="seg three" role="group" aria-label="Appearance" style="margin-top:0"><span class="ind" id="pfModeInd"></span>' + modes.map(function (m) { return '<button type="button" data-pfmode="' + m + '" aria-pressed="' + (m === S.modePref) + '">' + m.charAt(0).toUpperCase() + m.slice(1) + '</button>'; }).join('') + '</div>' +
+      '<div class="pf-row"><span><b>Welcome sound</b><small>Typing sound on the welcome screen</small></span><button type="button" class="switch" id="pfSound" role="switch" aria-checked="' + (LG ? LG.sound : true) + '" aria-label="Welcome sound"><i></i></button></div>' +
+      '<div class="pf-row"><span><b>Show welcome screen again</b><small>See the typed greeting now</small></span><button type="button" class="ghost sm" id="pfLanding">Play</button></div>' +
+      '<p class="fine">Prototype: your account and stubs are kept in this browser only.</p>' +
+      '<details class="credits"><summary>Photo credits</summary><ul>' + Object.keys(PH).map(function (k) { var t = byId(k), p = PH[k]; return '<li>' + esc(t ? t.place : k) + ': ' + esc(p[1]) + ', ' + esc(p[2]) + ', via Wikimedia Commons</li>'; }).join('') + '</ul></details>';
+    setSeg('#pfModeInd', modes.indexOf(S.modePref));
+    var ta = $('#tabAv'); if (ta) { ta.innerHTML = a ? '<span>' + esc(initials(a.name)) + '</span>' : personSVG(); ta.classList.toggle('on', !!a); }
+  }
+  $('#s-recap').addEventListener('click', function (e) {
+    var m = e.target.closest('[data-pfmode]');
+    if (m) { setMode(m.dataset.pfmode); renderProfile(); syncModeBtn(); return; }
+    if (e.target.closest('#pfIn')) { openAuth(); return; }
+    if (e.target.closest('#pfOut')) { S.account = null; store('tapak.account', null); renderAvatar(); toast('Signed out'); return; }
+    if (e.target.closest('#pfSound')) { lgSetSound(!LG.sound); renderProfile(); return; }
+    if (e.target.closest('#pfLanding')) { openLanding(null); return; }
+  });
+
+  /* quick light / dark switch on Home (where the avatar used to be) */
+  function syncModeBtn() {
+    var b = $('#modeBtn'); if (!b) return; var dark = isDark();
+    b.classList.toggle('dark', dark); b.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode'); b.setAttribute('aria-pressed', dark);
+  }
+  $('#modeBtn').addEventListener('click', function () {
+    var b = this, next = isDark() ? 'light' : 'dark';
+    if (!RM) b.animate([{ transform: 'rotate(0) scale(1)' }, { transform: 'rotate(-90deg) scale(.8)' }, { transform: 'rotate(0) scale(1)' }], { duration: 600, easing: SPRING });
+    setMode(next); syncModeBtn(); renderProfile();
+    toast(next === 'dark' ? 'Dark mode on' : 'Light mode on');
+  });
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
     if (!auth.hidden) { store('tapak.welcomed', true); closeAuth(); }
@@ -3604,7 +3852,7 @@ img{-webkit-user-drag:none;user-select:none}
   });
 
   /* ====================== TABS ====================== */
-  var SCREENS = { home: '#s-home', map: '#s-map', make: '#s-make', newbook: '#s-newbook', stubs: '#s-stubs', recap: '#s-recap' };
+  var SCREENS = { home: '#s-home', map: '#s-map', make: '#s-make', newbook: '#s-newbook', stubs: '#s-stubs', profile: '#s-recap' };
   function showTab(name, flashId) {
     closeDetail(true); closeSheet(); closeBook(true);
     S.tab = name;
@@ -3620,6 +3868,7 @@ img{-webkit-user-drag:none;user-select:none}
   document.addEventListener('click', function (e) {
     var t = e.target.closest('[data-tab]'); if (t) { showTab(t.dataset.tab); return; }
     var g = e.target.closest('[data-go]'); if (g) { showTab(g.dataset.go); return; }
+    if (e.target.closest('[data-replay-open]')) { pickReplay(null); return; }
     if (e.target.closest('[data-make]')) openMakeSheet();
   });
   window.addEventListener('resize', function () { if (S.tab === 'map') { sizeCanvas(); render(); } if (S.tab === 'stubs' && S.view === 'books') buildShelf(SH.active < 0 ? 0 : SH.active); });
@@ -3636,7 +3885,7 @@ img{-webkit-user-drag:none;user-select:none}
   /* ====================== BOOT ====================== */
   if (S.modePref !== 'system') root.setAttribute('data-mode', S.modePref);
   renderPins(false); renderHome(); renderRecap(); renderMake();
-  var start = store('tapak.tab'); if (SCREENS[start] && start !== 'home') showTab(start);
-  if (!S.account && !store('tapak.welcomed')) openAuth();
+  var start = store('tapak.tab'); if (start === 'recap') start = 'profile'; if (SCREENS[start] && start !== 'home') showTab(start);
+  openLanding(function () { if (!S.account && !store('tapak.welcomed')) openAuth(); });
 })();
 </script>

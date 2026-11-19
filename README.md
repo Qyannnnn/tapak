@@ -6,12 +6,13 @@ A UI/UX prototype of a travel keepsake app: every happy place you have been to, 
 
 ## What it does
 
+- **Welcome** - tap the ticket to begin and a greeting types itself out with typewriter sounds: "Good evening, Tess." (or "traveller" if you are not signed in). Sound can be muted.
 - **Home** - trip-book hero that auto-swipes (drag, dots or arrow keys to change), a curved 3D glass carousel of places with coordinates, and your trip books.
 - **Map** - a globe that flattens into a map as you zoom in, with country, state and road lines. Tap a pin and the place photo pops up out of the map like a torn paper cut-out.
 - **Make** - add a stub in four steps (trip book, where, the memory, stub style), or start a new trip book first.
 - **Stubs** - your places filed by country and city, all your tickets, or a shelf of trip books that open into a stop-by-stop timeline.
-- **Recap** - replay your year (or one trip) two ways: an **Instagram-style story** with location, date and caption stickers, tap and hold controls, or a **travel reel** - a short film that opens through a plane window and cuts through every place with porthole, whip and zoom transitions. Or step into the **memory space**, where every stub floats around you as a glass card.
-- Account sign-in, dark and light mode, and 5,700+ cities worldwide.
+- **Profile** - your account, stats and settings (appearance, welcome sound). **Recap** lives here: replay your year (or one trip) as an **Instagram-style story** or a **travel reel** that opens through a plane window, or step into the **memory space**.
+- Account sign-in, a sun/moon switch on Home for dark and light mode, and 5,700+ cities worldwide.
 
 Everything you make is saved in your own browser (localStorage). It is a single self-contained `index.html`, so no build step or server is needed.
 
