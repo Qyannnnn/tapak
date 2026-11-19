@@ -1,16 +1,16 @@
 # Tapak
 
-A UI/UX prototype of a travel keepsake app: every happy place you have been to, kept as a ticket stub.
+A UI/UX prototype of a travel keepsake app: every happy place you have been to, kept as a postage stamp in a trip album.
 
 **Live demo:** https://qyannnnn.github.io/tapak/
 
 ## What it does
 
 - **Welcome** - tap the ticket to begin and a greeting types itself out with typewriter sounds: "Good evening, Tess." (or "traveller" if you are not signed in). Sound can be muted.
-- **Home** - trip-book hero that auto-swipes (drag, dots or arrow keys to change), a curved 3D glass carousel of places with coordinates, and your trip books.
+- **Home** - a bookshelf. Every trip is a book (with stamps peeking out of the pages). Tap one and it flies off the shelf, the cover swings open, and you flip through a spiral stamp album with stamps of different sizes, a page per city. Tap a stamp for its story.
 - **Map** - a globe that flattens into a map as you zoom in, with country, state and road lines. Tap a pin and the place photo pops up out of the map like a torn paper cut-out.
-- **Make** - add a stub in four steps (trip book, where, the memory, stub style), or start a new trip book first.
-- **Stubs** - your places filed by country and city, all your tickets, or a shelf of trip books that open into a stop-by-stop timeline.
+- **Make** - add a stamp in four steps (trip book, where, the memory, stamp style: wide, tall or square), or start a new trip book first.
+- **Stamps** - every stamp scattered on a table. Tap any one, shuffle them, or press Surprise me. A sorted-by-country view is one tap away.
 - **Profile** - your account, stats and settings (appearance, welcome sound). **Recap** lives here: replay your year (or one trip) as an **Instagram-style story** or a **travel reel** that opens through a plane window, or step into the **memory space**.
 - Account sign-in, a sun/moon switch on Home for dark and light mode, and 5,700+ cities worldwide.
 

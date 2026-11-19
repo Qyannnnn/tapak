@@ -1106,6 +1106,143 @@ img{-webkit-user-drag:none;user-select:none}
 .mx-hint #spNow{font:600 18px/1.1 var(--serif);font-size:18px}
 .mx-hint small{display:block}
 
+
+/* ===== postage stamps (replace ticket stubs everywhere) ===== */
+.tk.stamp{container-type:inline-size;position:relative;width:100%;margin-inline:auto;filter:drop-shadow(0 5px 8px rgba(30,20,10,.22))}
+.tk.stamp.st-land{max-width:340px}
+.tk.stamp.st-port{max-width:230px}
+.tk.stamp.st-sq{max-width:270px}
+.stamp .tk-body{display:block;position:relative;overflow:visible;color:#2A2622;background:#FBF7EF;aspect-ratio:var(--ar);border-radius:0;
+  --p:2.6cqw;
+  -webkit-mask:radial-gradient(circle calc(var(--p) * .78) at 50% 50%,#0000 96%,#000) calc(var(--p) * -1) calc(var(--p) * -1) / calc(var(--p) * 2) calc(var(--p) * 2) round,linear-gradient(#000 0 0) center / calc(100% - var(--p) * 2) calc(100% - var(--p) * 2) no-repeat;
+  mask:radial-gradient(circle calc(var(--p) * .78) at 50% 50%,#0000 96%,#000) calc(var(--p) * -1) calc(var(--p) * -1) / calc(var(--p) * 2) calc(var(--p) * 2) round,linear-gradient(#000 0 0) center / calc(100% - var(--p) * 2) calc(100% - var(--p) * 2) no-repeat}
+.stamp.st-land{--ar:1.3}
+.stamp.st-port{--ar:.74}
+.stamp.st-sq{--ar:.88}
+.stamp .tk-photo{position:absolute;left:6.5cqw;right:6.5cqw;top:6.5cqw;bottom:17cqw;border-radius:0;background:var(--c);box-shadow:0 0 0 .9cqw #FBF7EF,0 0 0 1.5cqw color-mix(in srgb,var(--c) 70%,#2A2622)}
+.stamp.st-port .tk-photo{bottom:22cqw}
+.stamp .tk-photo>svg,.stamp .tk-photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.st-cty{position:absolute;left:3cqw;top:3cqw;z-index:1;font:700 3.4cqw/1 var(--mono);letter-spacing:.16em;color:#FFFFFF;text-shadow:0 1px 4px rgba(0,0,0,.45)}
+.st-val{position:absolute;right:3cqw;top:2cqw;z-index:1;display:flex;align-items:baseline;gap:.6cqw;font:600 12cqw/1 var(--serif);color:#FFFFFF;text-shadow:0 2px 8px rgba(0,0,0,.4)}
+.st-val small{font:700 3.6cqw/1 var(--body)}
+.st-foot{position:absolute;left:6.5cqw;right:6.5cqw;bottom:4cqw;height:10cqw;display:flex;flex-direction:column;justify-content:flex-end;gap:1cqw;min-width:0}
+.stamp.st-port .st-foot{height:14cqw}
+.st-place{font:600 6.2cqw/1 var(--serif);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#2A2622}
+.stamp.st-port .st-place{font-size:8.6cqw}
+.st-meta{font:600 2.9cqw/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#7D7268;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stamp.st-port .st-meta{font-size:4cqw}
+.st-pm{position:absolute;right:-2cqw;bottom:9cqw;width:46cqw;color:rgba(40,30,32,.5);transform:rotate(-14deg);pointer-events:none;mix-blend-mode:multiply}
+.stamp.st-port .st-pm{width:64cqw;bottom:12cqw}
+.stamp.st-sq .st-pm{width:52cqw}
+
+/* make sheet: three stamp sizes */
+.msheet .opts{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.msheet .opts .opt{padding:10px;gap:6px;align-items:center;text-align:center}
+.msheet .opts .opt .ill{height:104px;width:100%}
+.msheet .opts .opt b{font-size:14px}
+.msheet .opts .opt span{font-size:11px}
+.opt .ill .tk.stamp{max-width:none}
+.preview .pv.sq{width:70%}
+.preview .pv.land{width:88%}
+.preview .pv{margin-inline:auto}
+.dv-ticket.port,.dv-ticket.sq{width:70%;margin-inline:auto}
+
+/* ===== Home: bookshelf ===== */
+.shelf-hd{margin-top:22px}
+.shelf-hd h2{margin:2px 0 0;font:600 34px/1 var(--serif)}
+.shelf-hd .sub{margin-top:6px}
+.bshelf{margin:18px -6px 0;display:flex;flex-direction:column;gap:30px}
+.bs-row{position:relative;padding:0 10px}
+.bs-books{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:end;padding:0 6px}
+.bs-plank{position:relative;height:16px;margin:-3px -4px 0;border-radius:6px 6px 10px 10px;background:linear-gradient(180deg,color-mix(in srgb,var(--card) 70%,#FFFFFF) 0%,var(--card) 40%,color-mix(in srgb,var(--card) 80%,#B89F86) 100%);box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 18px 22px -12px rgba(60,40,20,.45),0 2px 0 color-mix(in srgb,var(--line) 80%,#8C7660)}
+.bs-plank::after{content:"";position:absolute;left:4%;right:4%;top:100%;height:22px;background:radial-gradient(closest-side,rgba(60,40,20,.18),transparent);pointer-events:none}
+.sbook{position:relative;display:block;height:var(--h);padding:0;border:0;background:none;cursor:pointer;color:var(--ink);text-align:left;transform:rotate(var(--tilt));transform-origin:50% 100%;transition:transform .5s var(--spring)}
+@media (hover:hover){.sbook:hover{transform:translateY(-10px) rotate(0deg)}}
+.sbook:active{transform:translateY(-4px) scale(.97)}
+.sbook:focus-visible{outline:3px solid var(--peach);outline-offset:4px;border-radius:12px}
+.sb-book{position:absolute;inset:0;display:block;transform-style:preserve-3d}
+.sb-pages{position:absolute;top:4px;bottom:3px;right:-5px;width:8px;border-radius:0 4px 4px 0;background:repeating-linear-gradient(90deg,#F4EEE3 0 1px,#E2D9CB 1px 2px);box-shadow:2px 2px 4px rgba(0,0,0,.15)}
+.sb-cover{position:absolute;inset:0;display:flex;flex-direction:column;border-radius:6px 12px 12px 6px;overflow:hidden;background:var(--c);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 14px 22px -12px rgba(40,25,15,.6),0 3px 6px rgba(40,25,15,.18)}
+.sb-spine{position:absolute;left:0;top:0;bottom:0;width:11px;z-index:2;background:linear-gradient(90deg,rgba(0,0,0,.28),rgba(0,0,0,.06) 60%,rgba(255,255,255,.18) 75%,rgba(0,0,0,.08));}
+.sb-ph{position:relative;display:block;margin:10px 9px 0 18px;height:46%;border-radius:4px;overflow:hidden;box-shadow:0 0 0 3px rgba(255,255,255,.85),0 4px 10px rgba(0,0,0,.25)}
+.sb-tx{position:relative;flex:1;display:flex;flex-direction:column;gap:4px;padding:10px 9px 10px 18px;min-height:0}
+.sb-tx b{font:600 16px/1.02 var(--serif);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.sb-tx small{font:600 9.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;opacity:.82}
+.sb-fl{display:flex;gap:3px;margin-top:auto}
+.sb-fl .flag{width:15px;height:15px}
+.sb-fl .flag.code{font-size:6px;line-height:15px}
+.sb-peek{position:absolute;left:0;right:0;top:-18px;height:40px;z-index:0;pointer-events:none}
+.sb-pk{position:absolute;top:0;width:34px;left:calc(26% + var(--k) * 22%);transform:rotate(calc(var(--k) * 9deg - 9deg));transition:transform .5s var(--spring)}
+.sb-pk .tk.stamp{filter:drop-shadow(0 2px 3px rgba(0,0,0,.2))}
+@media (hover:hover){.sbook:hover .sb-pk{transform:translateY(-8px) rotate(calc(var(--k) * 12deg - 12deg))}}
+.sb-book{z-index:1}
+.sbook.add{--h:168px;color:var(--muted)}
+.sbook.add .sb-cover{background:none;border:2px dashed var(--line);box-shadow:none;align-items:center;justify-content:center;gap:10px;border-radius:12px}
+.sbook.add .sb-tx{flex:none;align-items:center;padding:0;text-align:center}
+.sbook.add .sb-tx b{font-size:15px;color:var(--text)}
+.sb-plus{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--raise);color:var(--text)}
+.sb-plus svg{width:20px;height:20px}
+
+/* ===== stamp album ===== */
+.album{position:absolute;inset:0;z-index:48;display:flex;flex-direction:column;background:#1E1915;color:#F3EDE4;overflow:hidden}
+.album::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 55% at 50% 42%,color-mix(in srgb,var(--c) 30%,#3A2E25),#1E1915 75%);pointer-events:none}
+.al-top{position:relative;z-index:2;display:flex;align-items:center;gap:10px;padding:calc(16px + env(safe-area-inset-top)) 16px 0}
+.al-title{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center}
+.al-title span{font:600 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:rgba(243,237,228,.7)}
+.al-title b{font:600 22px/1.05 var(--serif);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.al-book{position:relative;z-index:1;flex:1;min-height:0;margin:16px 14px 0 22px;transform-origin:50% 50%}
+.al-pages{position:absolute;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.al-pages::-webkit-scrollbar{display:none}
+.al-pages:focus-visible{outline:2px solid #FFD9C7;outline-offset:4px}
+.al-page{flex:none;width:100%;height:100%;scroll-snap-align:start;padding:0 2px}
+.al-paper{position:relative;height:100%;border-radius:4px 14px 14px 4px;background:#F4EFE6;color:#2A2622;transform-origin:0 50%;box-shadow:0 30px 50px -24px rgba(0,0,0,.75),0 0 0 1px rgba(0,0,0,.06),inset 14px 0 18px -14px rgba(0,0,0,.25);
+  background-image:radial-gradient(rgba(120,100,80,.08) 1px,transparent 1.2px),linear-gradient(90deg,rgba(0,0,0,.05),transparent 8%);background-size:14px 14px,100% 100%;will-change:transform}
+.al-ph{position:absolute;left:28px;right:20px;top:20px;display:flex;flex-direction:column;gap:5px}
+.al-ph b{font:600 italic 30px/1 var(--serif)}
+.al-ph span{display:flex;align-items:center;gap:6px;font:600 10px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#7D7268}
+.al-ph .flag{width:14px;height:14px}
+.al-area{position:absolute;left:18px;right:12px;top:84px;bottom:52px}
+.al-st{position:absolute;padding:0;border:0;background:none;cursor:pointer;transform:translate(-50%,-50%) rotate(var(--r));transition:transform .45s var(--spring)}
+.al-st .tk.stamp{max-width:none}
+@media (hover:hover){.al-st:hover{transform:translate(-50%,-52%) rotate(0deg) scale(1.04);z-index:3}}
+.al-st:focus-visible{outline:3px solid var(--peach);outline-offset:4px}
+.al-st.taped::after{content:"";position:absolute;left:50%;top:-8px;width:44%;height:16px;transform:translateX(-50%) rotate(-3deg);background:rgba(255,236,190,.62);box-shadow:0 1px 2px rgba(0,0,0,.08);clip-path:polygon(3% 0,97% 4%,100% 50%,96% 100%,4% 96%,0 50%)}
+.al-note{position:absolute;left:28px;right:22px;bottom:18px;margin:0;font:500 italic 15px/1.3 var(--serif);color:#5E554C;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.al-no{position:absolute;right:16px;bottom:18px;font:600 10px/1 var(--mono);color:#A89B8C}
+.al-spiral{position:absolute;left:-14px;top:14px;bottom:14px;width:26px;z-index:3;pointer-events:none;background:radial-gradient(circle 5px at 18px 50%,#1E1915 4.2px,transparent 4.6px) 0 0 / 26px 26px repeat-y,linear-gradient(90deg,transparent 0 3px,transparent 3px) ;}
+.al-spiral::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0 7px,#C9C2B8 7px 9px,#8D857B 9px 11px,#E7E1D8 11px 13px,transparent 13px 26px);-webkit-mask:linear-gradient(90deg,#000 0 22px,transparent 22px);mask:linear-gradient(90deg,#000 0 22px,transparent 22px);border-radius:8px;filter:drop-shadow(1px 1px 1px rgba(0,0,0,.4))}
+.al-cover{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;border-radius:4px 14px 14px 4px;overflow:hidden;background:var(--c);color:var(--ink);transform-origin:0 50%;backface-visibility:hidden;box-shadow:0 30px 50px -24px rgba(0,0,0,.75),inset 16px 0 16px -12px rgba(0,0,0,.3)}
+.al-cover[hidden]{display:none}
+.ac-ph{position:relative;display:block;margin:28px 26px 0 38px;height:52%;border-radius:4px;overflow:hidden;box-shadow:0 0 0 6px rgba(255,255,255,.88),0 10px 24px rgba(0,0,0,.3)}
+.ac-tx{display:flex;flex-direction:column;gap:8px;padding:26px 26px 0 38px}
+.ac-tx small{font:600 10px/1 var(--mono);letter-spacing:.2em;opacity:.8}
+.ac-tx b{font:600 38px/1 var(--serif)}
+.ac-tx span{font-size:13px;font-weight:700;opacity:.85}
+.al-foot{position:relative;z-index:2;display:flex;align-items:center;gap:10px;padding:14px 16px calc(18px + env(safe-area-inset-bottom))}
+.al-nav{width:46px;height:46px;flex:none;border-radius:50%;border:0;background:rgba(243,237,228,.12);color:#F3EDE4;display:grid;place-items:center;cursor:pointer}
+.al-nav svg{width:18px;height:18px}
+.al-nav:focus-visible{outline:2px solid #FFD9C7}
+.al-pg{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px}
+.al-pg>span:first-child{font:600 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.al-pg small{font-size:11px;color:rgba(243,237,228,.65)}
+.al-dots{display:flex;gap:4px}
+.al-dots i{width:6px;height:6px;border-radius:3px;background:rgba(243,237,228,.3);transition:width .4s var(--ease),background .4s}
+.al-dots i.on{width:18px;background:#FFD9C7}
+
+/* ===== Stamps tab: all stamps scattered ===== */
+.stm-acts{display:flex;gap:10px;margin-top:14px}
+.primary.sm{height:42px;padding:0 18px;font-size:14px}
+.primary.sm svg{width:17px;height:17px}
+.stm-board{position:relative;margin:18px -20px 0;border-radius:28px 28px 0 0;background:color-mix(in srgb,var(--card) 60%,var(--app));background-image:radial-gradient(color-mix(in srgb,var(--text) 14%,transparent) 1px,transparent 1.3px);background-size:18px 18px;box-shadow:inset 0 1px 0 var(--line);overflow:hidden}
+.stm-st{position:absolute;padding:0;border:0;background:none;cursor:pointer;transform:translate(-50%,-50%) rotate(var(--r));transition:transform .45s var(--spring),filter .3s}
+@media (hover:hover){.stm-st:hover{transform:translate(-50%,-54%) rotate(0deg) scale(1.06);z-index:40 !important}}
+.stm-st:focus-visible{outline:3px solid var(--peach);outline-offset:4px;z-index:40 !important}
+.stm-st .tk.stamp{max-width:none}
+.stm-st.fresh{z-index:45 !important}
+.stm-st.fresh .tk.stamp{filter:drop-shadow(0 0 0 2px var(--peach)) drop-shadow(0 12px 22px rgba(180,87,58,.55))}
+.stm-board{isolation:isolate;z-index:0}
+.bshelf{isolation:isolate}
+
 </style>
 
 <div class="stage">
@@ -1114,10 +1251,10 @@ img{-webkit-user-drag:none;user-select:none}
     <h1>Every happy place, kept as a ticket stub.</h1>
     <p>A playable prototype of a travel keepsake app. Sign in, collect stubs from any city in the world, see them on a globe, and replay each trip as a book. Anything you make stays in this browser.</p>
     <ul>
-      <li><b>01</b><span>A welcome screen types a greeting with your name. Tap the ticket to begin. On Home the sun and moon button switches light and dark.</span></li>
+      <li><b>01</b><span>Tap the ticket to begin. Home is your bookshelf: every trip is a book that opens into a stamp album. Tap any stamp for its story.</span></li>
       <li><b>02</b><span>Map: press &minus; for a spinning globe, + to zoom down to cities. In the downloaded file it zooms right down to streets and shops.</span></li>
-      <li><b>03</b><span>Make: add a stub in four steps, or start a new trip book first. Places file themselves under country and city.</span></li>
-      <li><b>04</b><span>Stubs: Places, Tickets or Trip books. A trip book opens into a stop-by-stop timeline.</span></li>
+      <li><b>03</b><span>Make: add a stamp in four steps (pick wide, tall or square), or start a new trip book first. Places file themselves under country and city.</span></li>
+      <li><b>04</b><span>Stamps: every memory scattered on a table. Tap one, shuffle them, or press Surprise me.</span></li>
       <li><b>05</b><span>Profile: your account, stats and settings, with Recap inside it. Replay your year as a story or a travel reel, or step into the memory space.</span></li>
     </ul>
   </aside>
@@ -1130,6 +1267,9 @@ img{-webkit-user-drag:none;user-select:none}
         <div><small id="hello">Good evening,</small><b id="helloName">traveller</b></div>
         <button class="modebtn" id="modeBtn" type="button" aria-label="Switch to dark mode" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><g class="mb-sun" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"></path></g><path class="mb-moon" d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" fill="currentColor"></path></svg></button>
       </div>
+      <div class="shelf-hd"><span class="eyebrow" id="shelfMeta"></span><h2>My shelf</h2><p class="sub">Every trip is a book. Open one to flip through its stamps.</p></div>
+      <div class="bshelf" id="bshelf"></div>
+      <div class="home-legacy" hidden>
       <div class="search">
         <label for="homeSearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg><span class="sr">Search your places</span><input id="homeSearch" type="search" placeholder="Search your places" autocomplete="off"></label>
         <button class="fbtn" id="filterBtn" aria-label="Browse all saved places"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"></path><circle cx="16" cy="7" r="2"></circle><circle cx="10" cy="17" r="2"></circle></svg></button>
@@ -1170,6 +1310,7 @@ img{-webkit-user-drag:none;user-select:none}
         <p id="teaserP">Play them back as a story.</p>
         <button class="primary" data-replay-open="1" style="align-self:flex-start;position:relative"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"></path></svg>Open recap</button>
       </div>
+      </div>
     </section>
 
     <!-- MAP -->
@@ -1207,9 +1348,9 @@ img{-webkit-user-drag:none;user-select:none}
     </section>
 
     <!-- MAKE -->
-    <section class="screen" id="s-make" aria-label="Make a stub" hidden>
+    <section class="screen" id="s-make" aria-label="Make a stamp" hidden>
       <span class="eyebrow">New memory</span>
-      <h1 class="h1 sm">Make a stub</h1>
+      <h1 class="h1 sm">Make a stamp</h1>
       <p class="sub">Pick the trip, say where it was, add the memory, then choose how the stub looks.</p>
       <div class="preview"><div class="pv" id="mkPreview"></div><small>PREVIEW</small></div>
       <form id="mkForm" novalidate>
@@ -1243,14 +1384,15 @@ img{-webkit-user-drag:none;user-select:none}
             <div class="scenes" id="mkScenes"></div>
           </div>
         </fieldset>
-        <fieldset class="step"><legend><i>4</i>Stub style</legend>
-          <div class="seg" role="group" aria-label="Ticket style"><span class="ind" id="mkInd"></span>
-            <button type="button" id="mkLand" aria-pressed="true">Landscape stub</button>
-            <button type="button" id="mkPort" aria-pressed="false">Portrait card</button>
+        <fieldset class="step"><legend><i>4</i>Stamp style</legend>
+          <div class="seg three" role="group" aria-label="Stamp style"><span class="ind" id="mkInd"></span>
+            <button type="button" id="mkLand" aria-pressed="true">Wide</button>
+            <button type="button" id="mkPort" aria-pressed="false">Tall</button>
+            <button type="button" id="mkSq" aria-pressed="false">Square</button>
           </div>
-          <div class="field"><span class="lbl" id="swLbl">Stub colour</span><div class="swatches" id="mkSwatches" role="radiogroup" aria-labelledby="swLbl"></div></div>
+          <div class="field"><span class="lbl" id="swLbl">Frame colour</span><div class="swatches" id="mkSwatches" role="radiogroup" aria-labelledby="swLbl"></div></div>
         </fieldset>
-        <button type="submit" class="primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Add to my stubs</button>
+        <button type="submit" class="primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Add to my stamps</button>
       </form>
     </section>
 
@@ -1268,18 +1410,29 @@ img{-webkit-user-drag:none;user-select:none}
           <div class="field"><span class="lbl" id="nbSwLbl">Cover colour</span><div class="swatches" id="nbSwatches" role="radiogroup" aria-labelledby="nbSwLbl"></div></div>
         </fieldset>
         <fieldset class="step"><legend><i>3</i>Add stubs</legend>
-          <p class="hint" style="margin:0">Next you make the first stub. Every stub you add to this trip later lands in the same book, sorted into stops by city.</p>
+          <p class="hint" style="margin:0">Next you make the first stamp. Every stamp you add to this trip later lands in the same book, sorted into stops by city.</p>
         </fieldset>
-        <button type="submit" class="primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h5v18H6a2 2 0 0 1-2-2zM20 5a2 2 0 0 0-2-2h-5v18h5a2 2 0 0 0 2-2z"></path></svg>Create book and add first stub</button>
+        <button type="submit" class="primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h5v18H6a2 2 0 0 1-2-2zM20 5a2 2 0 0 0-2-2h-5v18h5a2 2 0 0 0 2-2z"></path></svg>Create book and add first stamp</button>
         <button type="button" class="linkbtn" id="nbCancel">Cancel</button>
       </form>
+    </section>
+
+    <!-- STAMPS (all, scattered) -->
+    <section class="screen" id="s-stamps" aria-label="All stamps" hidden>
+      <div class="row">
+        <div><span class="eyebrow" id="stmMeta"></span><h1 class="h1 sm">All my stamps</h1></div>
+        <button class="iconbtn" id="stmShuffle" aria-label="Shuffle the stamps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"></path></svg></button>
+      </div>
+      <p class="sub">Every memory, scattered on the table. Tap any one.</p>
+      <div class="stm-acts"><button type="button" class="primary sm" id="stmLucky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.4 5.6L20 9.3l-4.4 4 1.3 6L12 16.4 7.1 19.3l1.3-6L4 9.3l5.6-.7z"></path></svg>Surprise me</button><button type="button" class="ghost sm" data-go="stubs">Sorted by country</button></div>
+      <div class="stm-board" id="stmBoard"></div>
     </section>
 
     <!-- STUBS -->
     <section class="screen" id="s-stubs" aria-label="Collection" hidden>
       <div class="row">
         <div><span class="eyebrow">Collection</span><h1 class="h1 sm" id="stubsTitle">Saved places</h1></div>
-        <button class="iconbtn" data-make aria-label="Make a stub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+        <button class="iconbtn" data-make aria-label="Make a stamp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
       </div>
       <p class="sub" id="stubsSub">Every place you have kept, filed by country and city.</p>
       <div class="seg three" role="group" aria-label="View"><span class="ind" id="viewInd"></span>
@@ -1354,6 +1507,25 @@ img{-webkit-user-drag:none;user-select:none}
       </div>
       <div class="bk-cta" id="bkCta"><button class="darkpill" id="bkPlay">Play this trip<i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></i></button></div>
       <div class="bk-flap" id="bkFlap"><div class="bk-front" id="bkFront"></div><div class="bk-back"></div></div>
+    </div>
+
+    <!-- STAMP ALBUM -->
+    <div class="album" id="album" role="dialog" aria-modal="true" aria-labelledby="alName" hidden>
+      <div class="al-top">
+        <button class="glassbtn" id="alClose" aria-label="Back to the shelf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button>
+        <div class="al-title"><span id="alK"></span><b id="alName"></b></div>
+        <button class="glassbtn" id="alPlay" aria-label="Replay this trip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></button>
+      </div>
+      <div class="al-book" id="alBook">
+        <div class="al-pages" id="alPages" tabindex="0" aria-label="Album pages. Swipe or use the arrow keys to turn the page."></div>
+        <div class="al-spiral" aria-hidden="true"></div>
+        <div class="al-cover" id="alCover" aria-hidden="true"></div>
+      </div>
+      <div class="al-foot">
+        <button class="al-nav" id="alPrev" aria-label="Previous page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button>
+        <div class="al-pg"><span id="alPage"></span><span class="al-dots" id="alDots"></span><small>Tap a stamp to open it</small></div>
+        <button class="al-nav" id="alNext" aria-label="Next page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button>
+      </div>
     </div>
 
     <!-- LANDING -->
@@ -1446,7 +1618,7 @@ img{-webkit-user-drag:none;user-select:none}
           <div class="rise"><div class="tags" id="dvTags"></div></div>
           <div class="rise"><h3 class="dv-h">The memory</h3></div>
           <div class="rise"><p class="dv-quote" id="dvQuote"></p></div>
-          <div class="rise"><h3 class="dv-h">Your stub</h3></div>
+          <div class="rise"><h3 class="dv-h">Your stamp</h3></div>
           <div class="rise"><div class="dv-ticket" id="dvTicket"></div></div>
           <div class="rise"><span class="dv-credit" id="dvCredit"></span></div>
           <div class="rise"><button class="dv-like" id="dLike">Make one like this</button></div>
@@ -1471,17 +1643,18 @@ img{-webkit-user-drag:none;user-select:none}
     <div class="msheet" id="msheet" role="dialog" aria-modal="true" aria-labelledby="msTitle" aria-hidden="true">
       <div class="grab" aria-hidden="true"></div>
       <h2 id="msTitle">What do you want to make?</h2>
-      <p>Add a stub to one of your trips, or start a new trip book first.</p>
-      <div class="ms-label">Add a stub</div>
+      <p>Add a stamp to one of your trip books, or start a new book first.</p>
+      <div class="ms-label">Add a stamp</div>
       <div class="ms-sub" id="msCatLbl">Type of memory</div>
       <div class="catpick" id="msCats" role="radiogroup" aria-labelledby="msCatLbl"></div>
-      <div class="ms-sub">Stub style</div>
+      <div class="ms-sub">Stamp style</div>
       <div class="opts">
-        <button class="opt" data-shape="land"><span class="ill" id="illLand"></span><b>Landscape stub</b><span>Wide photo with a tear-off end. Great for views and places.</span></button>
-        <button class="opt" data-shape="port"><span class="ill" id="illPort"></span><b>Portrait card</b><span>Tall photo card. Great for food, friends and small moments.</span></button>
+        <button class="opt" data-shape="land"><span class="ill" id="illLand"></span><b>Wide</b><span>Views and places</span></button>
+        <button class="opt" data-shape="port"><span class="ill" id="illPort"></span><b>Tall</b><span>Food and friends</span></button>
+        <button class="opt" data-shape="sq"><span class="ill" id="illSq"></span><b>Square</b><span>Little moments</span></button>
       </div>
       <div class="ms-label">Or start a trip</div>
-      <button class="opt optbook" id="optBook"><span class="ill" id="illBook"></span><span class="ob-tx"><b>New trip book</b><span>Name a trip and pick a cover. Then add its first stub.</span></span></button>
+      <button class="opt optbook" id="optBook"><span class="ill" id="illBook"></span><span class="ob-tx"><b>New trip book</b><span>Name a trip and pick a cover. Then add its first stamp.</span></span></button>
     </div>
     <div class="msheet" id="asheet" role="dialog" aria-modal="true" aria-labelledby="acTitle" aria-hidden="true"></div>
 
@@ -1520,7 +1693,7 @@ img{-webkit-user-drag:none;user-select:none}
       <button class="tab" data-tab="home" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"></path></svg>Home</button>
       <button class="tab" data-tab="map"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"></path><path d="M9 4v14M15 6v14"></path></svg>Map</button>
       <button class="tab make" id="makeTab" aria-expanded="false" aria-controls="msheet"><span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span>Make</button>
-      <button class="tab" data-tab="stubs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v3a2 2 0 0 0 0 4v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a2 2 0 0 0 0-4z"></path><path d="M15 6v12" stroke-dasharray="2 2.5"></path></svg>Stubs</button>
+      <button class="tab" data-tab="stamps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h14v17H5z" stroke-dasharray="1.6 1.9"></path><rect x="8" y="6.5" width="8" height="8" rx=".6"></rect><path d="M8 17.5h5"></path></svg>Stamps</button>
       <button class="tab" data-tab="profile"><span class="tab-av" id="tabAv" aria-hidden="true"></span>Profile</button>
     </nav>
   </div>
@@ -1681,7 +1854,7 @@ img{-webkit-user-drag:none;user-select:none}
   var TRIPS = {
     pi: { name: 'Penang & Ipoh', color: '#C9734F' }, kl: { name: 'KL weekend', color: '#6E5FC2' },
     mk: { name: 'Melaka day trip', color: '#A8453A' }, sg: { name: 'Singapore getaway', color: '#2F7F6B' },
-    jp: { name: 'Japan in spring', color: '#D26A88' }, mine: { name: 'Loose stubs', color: '#7D7268' }
+    jp: { name: 'Japan in spring', color: '#D26A88' }, mine: { name: 'Loose stamps', color: '#7D7268' }
   };
   var USER_TRIPS = store('tapak.trips'); if (!USER_TRIPS || typeof USER_TRIPS !== 'object') USER_TRIPS = {};
   Object.keys(USER_TRIPS).forEach(function (k) { TRIPS[k] = USER_TRIPS[k]; });
@@ -1746,24 +1919,29 @@ img{-webkit-user-drag:none;user-select:none}
     return s;
   }
   function fitSize(c) { var w = c.split(' ').reduce(function (m, x) { return Math.max(m, x.length); }, 0); return Math.min(5, 34 / Math.max(w, 1)).toFixed(2); }
+  /* every memory is a postage stamp: perforated paper, photo, country, value and a postmark */
+  var STAMP_N = 0;
+  var CURRENCY = { Malaysia: 'sen', Singapore: '¢', Japan: '円', Thailand: '฿', Indonesia: 'Rp' };
+  function stampValue(t) { var n = parseInt(t.no, 10) || (t.place || '').length * 7; return [10, 20, 30, 40, 50, 60, 80, 100, 120][n % 9]; }
   function ticketHTML(t, forceShape) {
-    var shape = forceShape || t.shape, d = ym(t), ink = inkFor(t.color), cat = CATS[t.cat] || CATS.fun;
-    var style = 'style="--c:' + t.color + ';--ink:' + ink + '"';
-    var cap = t.caption ? '<span class="tk-cap">' + esc(t.caption) + '</span>' : '';
-    var city = esc(t.city.toUpperCase()), big = esc(t.city.charAt(0).toUpperCase());
-    if (shape === 'land') {
-      return '<div class="tk tk-land" ' + style + '><div class="tk-body"><div class="tk-photo">' + photoHTML(t) + cap + '</div>' +
-        '<div class="tk-stub"><span class="tk-big" aria-hidden="true">' + big + '</span><b class="tk-city" style="font-size:' + fitSize(t.city) + 'cqw">' + city + '</b><span class="tk-date">' + d.y + ' - ' + d.m + '</span><span class="tk-tag">' + esc(cat.label.toUpperCase()) + '</span><span class="tk-no">NO.' + esc(t.no) + '</span></div></div></div>';
-    }
-    return '<div class="tk tk-port" ' + style + '><div class="tk-body"><div class="tk-head"><span class="tk-big" aria-hidden="true">' + big + '</span><span class="tk-kick">' + esc(cat.label.toUpperCase()) + ' MEMORY</span><b class="tk-city">' + city + '</b>' +
-      '<span class="tk-row"><span>' + esc(t.place) + '</span><span>' + d.y + ' · ' + d.m + '</span></span><span class="tk-no">NO.' + esc(t.no) + '  ' + esc(t.country.toUpperCase()) + '</span></div>' +
-      '<div class="tk-pbox"><div class="tk-photo">' + photoHTML(t) + cap + '</div></div></div></div>';
+    var shape = forceShape || t.shape || 'land'; if (shape !== 'port' && shape !== 'sq') shape = 'land';
+    var d = ym(t), id = 'pm' + (++STAMP_N), cur = CURRENCY[t.country] || 'c', city = (t.city || '').toUpperCase();
+    var ring = (city + ' • ' + d.mon.toUpperCase() + ' ' + d.y + ' • ').slice(0, 30);
+    var pm = '<svg class="st-pm" viewBox="0 0 120 70" aria-hidden="true"><defs><path id="' + id + '" d="M35 35 m-24 0 a24 24 0 1 1 48 0 a24 24 0 1 1 -48 0"></path></defs>' +
+      '<circle cx="35" cy="35" r="30" fill="none" stroke="currentColor" stroke-width="2"></circle><circle cx="35" cy="35" r="18" fill="none" stroke="currentColor" stroke-width="1.2"></circle>' +
+      '<text font-size="7.4" font-weight="700" letter-spacing="1.2" fill="currentColor"><textPath href="#' + id + '">' + esc(ring) + '</textPath></text>' +
+      '<text x="35" y="38.5" text-anchor="middle" font-size="10" font-weight="800" fill="currentColor">' + d.m + '</text>' +
+      '<path d="M68 20c6-4 12 4 18 0s12 4 18 0 12 4 14 2M68 31c6-4 12 4 18 0s12 4 18 0 12 4 14 2M68 42c6-4 12 4 18 0s12 4 18 0 12 4 14 2M68 53c6-4 12 4 18 0s12 4 18 0 12 4 14 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>';
+    return '<div class="tk stamp st-' + shape + '" style="--c:' + t.color + ';--ink:' + inkFor(t.color) + '"><div class="tk-body">' +
+      '<div class="tk-photo">' + photoHTML(t) + '<span class="st-cty">' + esc((t.country || '').toUpperCase()) + '</span><span class="st-val">' + stampValue(t) + '<small>' + cur + '</small></span></div>' +
+      '<div class="st-foot"><b class="st-place">' + esc(t.place || t.city) + '</b><span class="st-meta">' + esc(t.city) + ' · ' + d.y + '</span></div>' + pm +
+      '</div></div>';
   }
   function label(t) { return t.place + ', ' + t.city + ', ' + t.country + ', ' + (CATS[t.cat] || CATS.fun).label + ', ' + ym(t).mon + ' ' + ym(t).y; }
   function tripRange(list) { var a = ym(list[list.length - 1]), b = ym(list[0]); return a.mon === b.mon && a.y === b.y ? a.mon + ' ' + a.y : a.mon + ' to ' + b.mon + ' ' + b.y; }
   function coverHTML(tid, big) {
     var list = tripStubs(tid), tr = trip(tid), first = list[list.length - 1], cats = uniq(list.map(function (t) { return t.cat; }));
-    return '<div class="bcov' + (big ? ' big' : '') + '" style="--c:' + tr.color + ';--ink:' + inkFor(tr.color) + '"><div class="bc-ph">' + photoHTML(list[0]) + '</div><div class="bc-tx"><span class="bc-k">TRIP BOOK · ' + ym(first).y + '</span><b class="bc-t">' + esc(tr.name) + '</b><span class="bc-m">' + tripRange(list) + ' · ' + plural(list.length, 'stub') + '<br>' + esc(countries(list).join(', ')) + '</span>' +
+    return '<div class="bcov' + (big ? ' big' : '') + '" style="--c:' + tr.color + ';--ink:' + inkFor(tr.color) + '"><div class="bc-ph">' + photoHTML(list[0]) + '</div><div class="bc-tx"><span class="bc-k">TRIP BOOK · ' + ym(first).y + '</span><b class="bc-t">' + esc(tr.name) + '</b><span class="bc-m">' + tripRange(list) + ' · ' + plural(list.length, 'stamp') + '<br>' + esc(countries(list).join(', ')) + '</span>' +
       '<span class="bc-dots">' + cats.map(function (k) { return '<i style="background:' + CATS[k].color + '"></i>'; }).join('') + '</span></div></div>';
   }
 
@@ -1898,7 +2076,7 @@ img{-webkit-user-drag:none;user-select:none}
     var old = heroEl.querySelector('.phx');
     heroEl._tid = tid;
     heroEl.innerHTML = '<span class="phx">' + photoHTML(t0) + '</span>' +
-      '<span class="hero-tx"><span class="eyebrow">Trip book ' + (heroI + 1) + ' of ' + ids.length + ' · ' + tripRange(list) + '</span><b>Relive ' + esc(trip(tid).name) + '</b><span class="hero-sub">' + plural(list.length, 'stub') + ' from ' + esc(cities.join(', ')) + '.</span></span>' +
+      '<span class="hero-tx"><span class="eyebrow">Trip book ' + (heroI + 1) + ' of ' + ids.length + ' · ' + tripRange(list) + '</span><b>Relive ' + esc(trip(tid).name) + '</b><span class="hero-sub">' + plural(list.length, 'stamp') + ' from ' + esc(cities.join(', ')) + '.</span></span>' +
       '<button class="hero-cta" data-book="' + tid + '">Open trip book ' + ARROW + '</button>' +
       '<span class="hero-dots" role="group" aria-label="Choose a trip book">' + ids.map(function (x, k) { return '<button data-hero="' + k + '" aria-label="' + esc(trip(x).name) + '" aria-current="' + (k === heroI) + '"></button>'; }).join('') + '</span>';
     var nw = heroEl.querySelector('.phx');
@@ -2042,16 +2220,17 @@ img{-webkit-user-drag:none;user-select:none}
 
   function renderTypes() {
     $('#typeGrid').innerHTML = CAT_KEYS.map(function (k) {
-      return '<button data-type="' + k + '" style="--cc:' + CATS[k].color + '"><span class="ti">' + catIcon(k) + '</span><b>' + CATS[k].label + '</b><span>' + plural(catCount(k), 'stub') + '</span></button>';
+      return '<button data-type="' + k + '" style="--cc:' + CATS[k].color + '"><span class="ti">' + catIcon(k) + '</span><b>' + CATS[k].label + '</b><span>' + plural(catCount(k), 'stamp') + '</span></button>';
     }).join('') + '<button data-replay-open="1" style="--cc:var(--accent-text)"><span class="ti"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></span><b>Recap</b><span>Your year</span></button>';
   }
   function renderTripRow() {
     $('#tripRow').innerHTML = tripIds().map(function (tid) {
       var list = tripStubs(tid), cs = countries(list);
-      return '<button class="tcard" data-book="' + tid + '" aria-label="Open trip book: ' + esc(trip(tid).name) + '"><span class="phx">' + photoHTML(list[0]) + '</span><span class="tc-flag">' + flagHTML(cs[0]) + esc(cs.length > 1 ? cs.length + ' countries' : cs[0]) + '</span><span class="tc-tx"><b>' + esc(trip(tid).name) + '</b><span><span>' + plural(list.length, 'stub') + '</span><span>' + tripRange(list) + '</span></span></span></button>';
+      return '<button class="tcard" data-book="' + tid + '" aria-label="Open trip book: ' + esc(trip(tid).name) + '"><span class="phx">' + photoHTML(list[0]) + '</span><span class="tc-flag">' + flagHTML(cs[0]) + esc(cs.length > 1 ? cs.length + ' countries' : cs[0]) + '</span><span class="tc-tx"><b>' + esc(trip(tid).name) + '</b><span><span>' + plural(list.length, 'stamp') + '</span><span>' + tripRange(list) + '</span></span></span></button>';
     }).join('');
   }
   function renderHome() {
+    renderShelf(false);
     renderAvatar(); heroShow(heroI, false); renderRegions(); renderCards(); renderTypes(); buildDeck(); renderTripRow();
     $('#teaserH').textContent = plural(S.tickets.length, 'happy memory', 'happy memories');
     $('#teaserP').textContent = 'in ' + plural(cityKeys().length, 'city', 'cities') + ' and ' + plural(countries().length, 'country', 'countries') + '. Play them back as a story.';
@@ -2119,11 +2298,11 @@ img{-webkit-user-drag:none;user-select:none}
   }
   function renderAll(flashId) {
     var list = filtered(), html = '';
-    $('#stubsSub').textContent = S.cat === 'all' ? 'Every ticket stub you have kept, grouped by trip.' : plural(list.length, 'stub') + ', grouped by trip.';
+    $('#stubsSub').textContent = S.cat === 'all' ? 'Every ticket stub you have kept, grouped by trip.' : plural(list.length, 'stamp') + ', grouped by trip.';
     if (!list.length) html = '<div class="empty">' + emptyMsg() + '</div>';
     tripIds().forEach(function (tid) {
       var items = list.filter(function (t) { return t.trip === tid; }); if (!items.length) return;
-      html += '<section class="trip"><div class="trip-h"><div><span class="eyebrow">' + tripRange(items) + ' · ' + esc(countries(items).join(', ')) + '</span><h3>' + esc(trip(tid).name) + '</h3><p>' + plural(items.length, 'stub') + ' · ' + esc(uniq(items.map(function (t) { return t.city; })).join(', ')) + '</p></div>' +
+      html += '<section class="trip"><div class="trip-h"><div><span class="eyebrow">' + tripRange(items) + ' · ' + esc(countries(items).join(', ')) + '</span><h3>' + esc(trip(tid).name) + '</h3><p>' + plural(items.length, 'stamp') + ' · ' + esc(uniq(items.map(function (t) { return t.city; })).join(', ')) + '</p></div>' +
         '<button class="playbtn" data-book="' + tid + '">' + bookIcon + 'Open book</button></div><div class="grid">' + items.map(stubBtn).join('') + '</div></section>';
     });
     $('#allList').innerHTML = html;
@@ -2320,14 +2499,14 @@ img{-webkit-user-drag:none;user-select:none}
     book.style.setProperty('--tc', tr.color); book.style.setProperty('--tink', ink);
     book.dataset.trip = tid;
     $('#bkTitle').textContent = tr.name;
-    $('#bkDates').textContent = tripRange(list) + ' · ' + plural(list.length, 'stub');
+    $('#bkDates').textContent = tripRange(list) + ' · ' + plural(list.length, 'stamp');
     $('#bkImg').innerHTML = '<span class="phx">' + photoHTML(list[list.length - 1]) + '</span><span class="bk-flags">' + cs.map(function (c) { return '<span>' + flagHTML(c) + esc(c) + '</span>'; }).join('') + '</span>' +
       '<span class="bk-stat"><b>' + stops.length + '</b> ' + (stops.length === 1 ? 'stop' : 'stops') + '</span>';
     $('#bkH').textContent = stops.length + '-stop ' + (cs.length === 1 ? cs[0] : 'multi-country') + ' trip';
     $('#bkTimeline').innerHTML = stops.map(function (st, i) {
       var c = st[0], cats = uniq(st.map(function (t) { return (CATS[t.cat] || CATS.fun).label; })), d = ym(c);
       return '<div class="tl-stop' + (i === 0 ? ' open' : '') + '"><button class="tl-head" aria-expanded="' + (i === 0) + '"><span class="th"><span class="phx">' + photoHTML(st[0]) + '</span></span>' +
-        '<div><small>STOP ' + (i + 1) + ' · ' + d.mon.toUpperCase() + ' ' + d.y + '</small><b>' + esc(c.city) + '</b><span>' + plural(st.length, 'stub') + ' · ' + esc(cats.join(', ')) + '</span></div><span class="chev">' + CHEVD + '</span></button>' +
+        '<div><small>STOP ' + (i + 1) + ' · ' + d.mon.toUpperCase() + ' ' + d.y + '</small><b>' + esc(c.city) + '</b><span>' + plural(st.length, 'stamp') + ' · ' + esc(cats.join(', ')) + '</span></div><span class="chev">' + CHEVD + '</span></button>' +
         '<div class="tl-panel"><div class="tl-in"><div class="tl-list">' + st.map(function (t) {
           var k = CATS[t.cat] || CATS.fun;
           return '<button class="tl-item" data-id="' + t.id + '" style="--cc:' + k.color + '"><span class="ti2"><span class="phx">' + photoHTML(t) + '</span></span><div><small>' + esc(k.label) + '</small><b>' + esc(t.place) + '</b><span>' + esc(t.caption || '') + '</span></div></button>';
@@ -2624,7 +2803,7 @@ img{-webkit-user-drag:none;user-select:none}
     m.on('movestart', function (e) { if (e.originalEvent) M.lastInput = performance.now(); });
     setLiveStyle();
     liveMarkers();
-    $('#mapSub').textContent = plural(countries().length, 'country', 'countries') + ' · ' + plural(cityKeys().length, 'city', 'cities') + ' · ' + plural(S.tickets.length, 'stub') + '. Zoom from the globe right down to the streets.';
+    $('#mapSub').textContent = plural(countries().length, 'country', 'countries') + ' · ' + plural(cityKeys().length, 'city', 'cities') + ' · ' + plural(S.tickets.length, 'stamp') + '. Zoom from the globe right down to the streets.';
     setTimeout(function () { var t = S.tickets[0]; if (!S.mapCity) m.flyTo({ center: [t.lon, t.lat], zoom: 12.5, speed: .9, curve: 1.6, essential: true }); }, D(700));
   }
   function liveGeo() {
@@ -2669,10 +2848,10 @@ img{-webkit-user-drag:none;user-select:none}
     WISHLIST.forEach(function (n) { add('<span class="npin"><span class="stand"><span class="mp-drop"><i></i><span class="np-label">' + esc(n[0]) + '</span></span></span></span>', n[3], n[2]); });
     cityKeys().forEach(function (ck) {
       var list = S.tickets.filter(function (t) { return cityKey(t) === ck; }), t = list[0], d = ym(t), n = list.length;
-      var w = add('<button class="mpin' + (S.mapCity === ck ? ' sel' : '') + '" data-city="' + esc(ck) + '" style="--c:' + t.color + '" aria-label="' + esc(t.city + ', ' + t.country) + ', ' + plural(n, 'stub') + '" aria-pressed="' + (S.mapCity === ck) + '">' +
+      var w = add('<button class="mpin' + (S.mapCity === ck ? ' sel' : '') + '" data-city="' + esc(ck) + '" style="--c:' + t.color + '" aria-label="' + esc(t.city + ', ' + t.country) + ', ' + plural(n, 'stamp') + '" aria-pressed="' + (S.mapCity === ck) + '">' +
         '<span class="mp-ground"><span class="mp-shadow"></span><span class="mp-pulse"></span></span>' +
         '<span class="stand"><span class="mp-drop"><span class="mp-float"><span class="mp-photo">' + photoHTML(t) + '</span><span class="mp-tail"></span><span class="mp-count">' + n + '</span></span>' +
-        '<span class="mp-label">' + esc(t.city) + '</span><span class="mp-tip">' + esc(t.city + ', ' + t.country) + '<span>' + plural(n, 'stub') + ' · latest ' + d.mon + ' ' + d.y + '</span></span></span></span></button>', t.lon, t.lat);
+        '<span class="mp-label">' + esc(t.city) + '</span><span class="mp-tip">' + esc(t.city + ', ' + t.country) + '<span>' + plural(n, 'stamp') + ' · latest ' + d.mon + ' ' + d.y + '</span></span></span></span></button>', t.lon, t.lat);
       w.querySelector('.mpin').addEventListener('click', function (e) { e.stopPropagation(); selectCity(S.mapCity === ck ? null : ck); });
     });
     if (LIVE.map.isStyleLoaded()) addLiveLayers();
@@ -2823,14 +3002,14 @@ img{-webkit-user-drag:none;user-select:none}
     WISHLIST.forEach(function (n) { html += '<span class="npin" data-lon="' + n[3] + '" data-lat="' + n[2] + '"><span class="stand"><span class="mp-drop"><i></i><span class="np-label">' + esc(n[0]) + '</span></span></span></span>'; });
     cityKeys().forEach(function (ck) {
       var list = S.tickets.filter(function (t) { return cityKey(t) === ck; }), t = list[0], d = ym(t), n = list.length;
-      html += '<button class="mpin' + (S.mapCity === ck ? ' sel' : '') + '" data-city="' + esc(ck) + '" data-lon="' + t.lon + '" data-lat="' + t.lat + '" style="--c:' + t.color + '" aria-label="' + esc(t.city + ', ' + t.country) + ', ' + plural(n, 'stub') + '" aria-pressed="' + (S.mapCity === ck) + '">' +
+      html += '<button class="mpin' + (S.mapCity === ck ? ' sel' : '') + '" data-city="' + esc(ck) + '" data-lon="' + t.lon + '" data-lat="' + t.lat + '" style="--c:' + t.color + '" aria-label="' + esc(t.city + ', ' + t.country) + ', ' + plural(n, 'stamp') + '" aria-pressed="' + (S.mapCity === ck) + '">' +
         '<span class="mp-ground"><span class="mp-shadow"></span><span class="mp-pulse"></span></span>' +
         '<span class="stand"><span class="mp-drop"><span class="mp-float"><span class="mp-photo">' + photoHTML(t) + '</span><span class="mp-tail"></span><span class="mp-count">' + n + '</span></span>' +
-        '<span class="mp-label">' + esc(t.city) + '</span><span class="mp-tip">' + esc(t.city + ', ' + t.country) + '<span>' + plural(n, 'stub') + ' · latest ' + d.mon + ' ' + d.y + '</span></span></span></span></button>';
+        '<span class="mp-label">' + esc(t.city) + '</span><span class="mp-tip">' + esc(t.city + ', ' + t.country) + '<span>' + plural(n, 'stamp') + ' · latest ' + d.mon + ' ' + d.y + '</span></span></span></span></button>';
     });
     pinLayer.innerHTML = html;
     if (S.mapCity) setTimeout(function () { popoutFor(S.mapCity, false); }, 0);
-    $('#mapSub').textContent = plural(countries().length, 'country', 'countries') + ' · ' + plural(cityKeys().length, 'city', 'cities') + ' · ' + plural(S.tickets.length, 'stub') + '. Zoom out for the globe, in for cities.';
+    $('#mapSub').textContent = plural(countries().length, 'country', 'countries') + ' · ' + plural(cityKeys().length, 'city', 'cities') + ' · ' + plural(S.tickets.length, 'stamp') + '. Zoom out for the globe, in for cities.';
     if (M.ready) render();
     if (LIVE.on) liveMarkers();
     if (drop && !RM) each(pinLayer.querySelectorAll('.mp-drop'), function (el, i) {
@@ -2913,7 +3092,7 @@ img{-webkit-user-drag:none;user-select:none}
     if (!ck) { sh.classList.remove('open'); sh.setAttribute('aria-hidden', 'true'); if (fly !== false && M.init && !LIVE.on) cam({ fy: .56 }, 700); return; }
     var list = S.tickets.filter(function (t) { return cityKey(t) === ck; }); if (!list.length) return;
     $('#sheetCity').textContent = list[0].city + ', ' + list[0].country;
-    $('#sheetCount').textContent = plural(list.length, 'stub') + ' · latest ' + ym(list[0]).mon + ' ' + ym(list[0]).y;
+    $('#sheetCount').textContent = plural(list.length, 'stamp') + ' · latest ' + ym(list[0]).mon + ' ' + ym(list[0]).y;
     $('#sheetStrip').innerHTML = list.map(function (t) { return '<button class="tkbtn" data-id="' + t.id + '" aria-label="' + esc(label(t)) + '">' + ticketHTML(t, 'land') + '</button>'; }).join('');
     $('#sheetStrip').scrollLeft = 0;
     sh.classList.add('open'); sh.setAttribute('aria-hidden', 'false');
@@ -2930,7 +3109,7 @@ img{-webkit-user-drag:none;user-select:none}
   function catPickHTML(sel) { return CAT_KEYS.map(function (k) { return '<button type="button" role="radio" data-cat="' + k + '" aria-checked="' + (k === sel) + '" tabindex="' + (k === sel ? 0 : -1) + '" style="--cc:' + CATS[k].color + '">' + catIcon(k) + CATS[k].label + '</button>'; }).join(''); }
   function renderMake() {
     var d = S.draft;
-    $('#mkLand').setAttribute('aria-pressed', d.shape === 'land'); $('#mkPort').setAttribute('aria-pressed', d.shape === 'port'); setSeg('#mkInd', d.shape === 'port' ? 1 : 0);
+    $('#mkLand').setAttribute('aria-pressed', d.shape === 'land'); $('#mkPort').setAttribute('aria-pressed', d.shape === 'port'); setSeg('#mkInd', d.shape === 'port' ? 1 : d.shape === 'sq' ? 2 : 0); $('#mkSq').setAttribute('aria-pressed', d.shape === 'sq');
     var pv = $('#mkPreview'); pv.className = 'pv ' + d.shape;
     pv.innerHTML = ticketHTML({ city: d.city, country: d.country, place: d.place || 'Place name', caption: d.caption, month: d.month || '2026-10', color: d.color, scene: d.scene, photo: d.photo, no: nextNo(), shape: d.shape, cat: d.cat });
     each($('#mkScenes').children, function (b) { b.setAttribute('aria-pressed', !d.photo && b.dataset.k === d.scene); });
@@ -2939,7 +3118,7 @@ img{-webkit-user-drag:none;user-select:none}
     $('#mkFileLbl').textContent = d.photo ? 'Change photo' : 'Choose a photo';
     var opts = tripIds().filter(function (x) { return x !== 'mine'; }).map(function (tid) { return [tid, trip(tid).name + ' \u00B7 ' + tripRange(tripStubs(tid))]; });
     if (d.newTrip) opts.unshift(['__new', 'New: ' + d.newTrip.name]);
-    opts.push(['mine', 'Loose stubs (no trip)']); opts.push(['__start', '+ Start a new trip book\u2026']);
+    opts.push(['mine', 'Loose stamps (no trip book)']); opts.push(['__start', '+ Start a new trip book\u2026']);
     if (!opts.some(function (o) { return o[0] === d.trip; })) d.trip = opts[0][0];
     $('#mkTrip').innerHTML = opts.map(function (o) { return '<option value="' + o[0] + '"' + (o[0] === d.trip ? ' selected' : '') + '>' + esc(o[1]) + '</option>'; }).join('');
     var tn = d.trip === '__new' && d.newTrip ? d.newTrip.name : trip(d.trip).name;
@@ -2950,6 +3129,7 @@ img{-webkit-user-drag:none;user-select:none}
   $('#mkSwatches').innerHTML = SWATCHES.map(function (s) { return '<button type="button" class="sw" role="radio" data-c="' + s[0] + '" aria-label="' + s[1] + '" style="background:' + s[0] + '"></button>'; }).join('');
   $('#mkLand').addEventListener('click', function () { S.draft.shape = 'land'; renderMake(); });
   $('#mkPort').addEventListener('click', function () { S.draft.shape = 'port'; renderMake(); });
+  $('#mkSq').addEventListener('click', function () { S.draft.shape = 'sq'; renderMake(); });
   $('#mkScenes').addEventListener('click', function (e) { var b = e.target.closest('.scene'); if (!b) return; S.draft.scene = b.dataset.k; S.draft.photo = null; renderMake(); });
   $('#mkSwatches').addEventListener('click', function (e) { var b = e.target.closest('.sw'); if (!b) return; S.draft.color = b.dataset.c; renderMake(); });
   $('#mkCats').addEventListener('click', function (e) { var b = e.target.closest('[data-cat]'); if (!b) return; S.draft.cat = b.dataset.cat; renderMake(); });
@@ -3039,7 +3219,7 @@ img{-webkit-user-drag:none;user-select:none}
     var ok = saveUser();
     S.cat = 'all'; S.view = 'all';
     renderHome(); renderPins(false); renderRecap();
-    showTab('stubs', t.id);
+    showTab('stamps', t.id);
     toast(ok ? 'Added to ' + trip(t.trip).name : 'Added. It will not be kept after you close this page.');
     d.photo = null; $('#mkFile').value = ''; renderMake();
   });
@@ -3065,8 +3245,9 @@ img{-webkit-user-drag:none;user-select:none}
   function openMakeSheet() {
     if (openSheetId === '#msheet') { closeSheet(); return; }
     $('#msCats').innerHTML = catPickHTML(sheetCat);
-    $('#illLand').innerHTML = '<div style="width:100%">' + ticketHTML({ city: 'Kyoto', country: 'Japan', place: 'Fushimi Inari', caption: 'Orange gates', month: '2026-04', color: '#A8441C', scene: 'temple', no: '000001', cat: sheetCat }, 'land') + '</div>';
-    $('#illPort').innerHTML = '<div style="width:72px">' + ticketHTML({ city: 'Ipoh', country: 'Malaysia', place: 'White coffee', caption: '', month: '2026-10', color: '#C27088', scene: 'cup', no: '000002', cat: sheetCat }, 'port') + '</div>';
+    $('#illLand').innerHTML = '<div style="width:112px">' + ticketHTML({ city: 'Kyoto', country: 'Japan', place: 'Fushimi Inari', caption: '', month: '2026-04', color: '#A8441C', scene: 'temple', no: '000001', cat: sheetCat }, 'land') + '</div>';
+    $('#illPort').innerHTML = '<div style="width:64px">' + ticketHTML({ city: 'Ipoh', country: 'Malaysia', place: 'White coffee', caption: '', month: '2026-10', color: '#C27088', scene: 'cup', no: '000002', cat: sheetCat }, 'port') + '</div>';
+    $('#illSq').innerHTML = '<div style="width:76px">' + ticketHTML({ city: 'Penang', country: 'Malaysia', place: 'Murals', caption: '', month: '2026-10', color: '#5E7A55', scene: 'hills', no: '000003', cat: sheetCat }, 'sq') + '</div>';
     $('#illBook').innerHTML = coverPreviewHTML('New trip', '#3D6E99');
     showSheet('#msheet');
   }
@@ -3082,7 +3263,7 @@ img{-webkit-user-drag:none;user-select:none}
   var TRIP_COLORS = [['#C9734F', 'Clay'], ['#6E5FC2', 'Iris'], ['#A8453A', 'Brick'], ['#2F7F6B', 'Jade'], ['#D26A88', 'Blossom'], ['#3D6E99', 'Harbour'], ['#8A6B3A', 'Teak'], ['#4F5B5C', 'Slate']];
   var NB = { name: '', color: TRIP_COLORS[0][0] };
   function coverPreviewHTML(name, color) {
-    return '<div class="bcov big" style="--c:' + color + ';--ink:' + inkFor(color) + '"><div class="bc-ph">' + SCENES.bay() + '</div><div class="bc-tx"><span class="bc-k">TRIP BOOK · ' + new Date().getFullYear() + '</span><b class="bc-t">' + esc(name || 'Your trip') + '</b><span class="bc-m">Your first stub goes here</span></div></div>';
+    return '<div class="bcov big" style="--c:' + color + ';--ink:' + inkFor(color) + '"><div class="bc-ph">' + SCENES.bay() + '</div><div class="bc-tx"><span class="bc-k">TRIP BOOK · ' + new Date().getFullYear() + '</span><b class="bc-t">' + esc(name || 'Your trip') + '</b><span class="bc-m">Your first stamp goes here</span></div></div>';
   }
   function renderNewBook() {
     $('#nbPreview').innerHTML = coverPreviewHTML(NB.name, NB.color);
@@ -3097,7 +3278,7 @@ img{-webkit-user-drag:none;user-select:none}
     var name = NB.name.trim(); if (!name) { $('#nbErr').hidden = false; $('#nbName').focus(); return; }
     S.draft.newTrip = { name: name, color: NB.color }; S.draft.trip = '__new'; S.draft.tripTouched = true;
     showTab('make'); renderMake();
-    toast('Trip book “' + name + '” is ready. Add its first stub.');
+    toast('Trip book “' + name + '” is ready. Add its first stamp.');
   });
   $('#nbCancel').addEventListener('click', function () { showTab('make'); renderMake(); });
   $('#optBook').addEventListener('click', function () { closeSheet(); openNewBook(); });
@@ -3184,14 +3365,14 @@ img{-webkit-user-drag:none;user-select:none}
     var cols = '', labels = '';
     for (var m = 1; m <= 12; m++) {
       var mm = String(m).padStart(2, '0'), items = S.tickets.filter(function (t) { return (t.month || '').slice(5, 7) === mm && (t.month || '').slice(0, 4) === '2026'; });
-      cols += '<div class="mcol' + (items.length ? '' : ' none') + '" role="img" aria-label="' + MON[m - 1] + ': ' + plural(items.length, 'stub') + '">' + items.map(function (t) { return '<i style="background:' + CATS[t.cat].color + '"></i>'; }).join('') + '</div>';
+      cols += '<div class="mcol' + (items.length ? '' : ' none') + '" role="img" aria-label="' + MON[m - 1] + ': ' + plural(items.length, 'stamp') + '">' + items.map(function (t) { return '<i style="background:' + CATS[t.cat].color + '"></i>'; }).join('') + '</div>';
       labels += '<span>' + MON[m - 1].charAt(0) + '</span>';
     }
     $('#mcols').innerHTML = cols; $('#mlabels').innerHTML = labels;
     $('#mleg').innerHTML = CAT_KEYS.map(function (k) { return '<span><i class="catdot" style="background:' + CATS[k].color + '"></i>' + CATS[k].label + '</span>'; }).join('');
     $('#trips').innerHTML = tripIds().map(function (tid) {
       var items = tripStubs(tid);
-      return '<button class="tripcard" data-trip="' + tid + '"><span class="ph">' + photoHTML(items[0]) + '</span><div><b>' + esc(trip(tid).name) + '</b><span>' + tripRange(items) + ' · ' + esc(countries(items).join(', ')) + ' · ' + plural(items.length, 'stub') + '</span></div><svg class="go" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></button>';
+      return '<button class="tripcard" data-trip="' + tid + '"><span class="ph">' + photoHTML(items[0]) + '</span><div><b>' + esc(trip(tid).name) + '</b><span>' + tripRange(items) + ' · ' + esc(countries(items).join(', ')) + ' · ' + plural(items.length, 'stamp') + '</span></div><svg class="go" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></button>';
     }).join('');
     $('#scArt').innerHTML = '<span class="phx">' + photoHTML(byId('j2') || S.tickets[0]) + '</span>' + S.tickets.slice(3, 6).map(function (t, i) { return '<span class="sc-g" style="--i:' + i + '"><span class="phx">' + photoHTML(t) + '</span></span>'; }).join('');
     $('#recapCollage').innerHTML = S.tickets.slice(0, 3).map(function (t, i) { return '<div style="position:absolute;width:108px;right:' + (i * 18) + 'px;top:' + (i * 30) + 'px;transform:rotate(' + [12, -6, 4][i] + 'deg)">' + ticketHTML(t, 'port') + '</div>'; }).join('');
@@ -3294,8 +3475,8 @@ img{-webkit-user-drag:none;user-select:none}
     $('#dvNo').textContent = 'NO.' + t.no;
     $('#dvTitle').textContent = t.place;
     $('#dvMeta').innerHTML = '<span class="catdot" style="background:' + c.color + '"></span>' + esc(c.label) + ' memory · ' + d.mon + ' ' + d.y + ' · ' + esc(trip(t.trip).name);
-    $('#dvTags').innerHTML = '<span><i class="catdot" style="background:' + c.color + '"></i>' + esc(c.label) + '</span><span>' + esc(t.city) + '</span><span>' + esc(t.country) + '</span><span>' + (t.shape === 'land' ? 'Wide stub' : 'Photo card') + '</span>';
-    $('#dvQuote').textContent = t.caption ? '“' + t.caption + '”' : 'No caption yet. Add one next time you make a stub.';
+    $('#dvTags').innerHTML = '<span><i class="catdot" style="background:' + c.color + '"></i>' + esc(c.label) + '</span><span>' + esc(t.city) + '</span><span>' + esc(t.country) + '</span><span>' + (t.shape === 'port' ? 'Tall stamp' : t.shape === 'sq' ? 'Square stamp' : 'Wide stamp') + '</span>';
+    $('#dvQuote').textContent = t.caption ? '“' + t.caption + '”' : 'No caption yet. Add one next time you make a stamp.';
     $('#dvTicket').className = 'dv-ticket ' + t.shape; $('#dvTicket').innerHTML = ticketHTML(t);
     var p = PH[t.id];
     $('#dvCredit').textContent = (p && !t.photo && PHOTO_OK) ? 'Photo: ' + p[1] + ', ' + p[2] + ', via Wikimedia Commons' : '';
@@ -3352,8 +3533,8 @@ img{-webkit-user-drag:none;user-select:none}
     var t = S.detail && byId(S.detail.id); if (!t) return;
     var R = rectIn($('#dvTrip'));
     closeDetail(true);
-    if (!book.hidden && book.dataset.trip === t.trip) return;
-    closeBook(true); openBook(t.trip, null, 0, R);
+    if (!album.hidden && AL.tid === t.trip) return;
+    closeBook(true); openAlbum(t.trip, null, R);
   });
   $('#dLike').addEventListener('click', function () {
     var t = S.detail && byId(S.detail.id); if (!t) return;
@@ -3391,7 +3572,7 @@ img{-webkit-user-drag:none;user-select:none}
       var po = document.createElement('span'); po.className = 'popout';
       po.innerHTML = '<span class="po-shadow"></span><span class="po-rim" style="clip-path:' + tornPoly(26, .22, seed + 3) + '"></span><span class="po-hole" style="clip-path:' + tornPoly(22, .26, seed + 11) + '"></span>' +
         '<span class="po-stand"><span class="po-card" role="button" tabindex="0" aria-label="Open ' + esc(t.place) + '" style="clip-path:' + cardPoly(seed + 5) + '"><span class="phx">' + photoHTML(t) + '</span><span class="po-sheen"></span></span>' +
-        '<span class="po-tag"><b>' + esc(t.place) + '</b><span>' + esc(t.city) + ' · ' + plural(list.length, 'stub') + ' · tap to open</span></span></span>';
+        '<span class="po-tag"><b>' + esc(t.place) + '</b><span>' + esc(t.city) + ' · ' + plural(list.length, 'stamp') + ' · tap to open</span></span></span>';
       g.appendChild(po); pin.classList.add('pop');
       var open = function (e) { e.stopPropagation(); e.preventDefault(); openDetail(t, po.querySelector('.po-card'), 0); };
       po.querySelector('.po-card').addEventListener('click', open);
@@ -3915,6 +4096,173 @@ img{-webkit-user-drag:none;user-select:none}
     setMode(next); syncModeBtn(); renderProfile();
     toast(next === 'dark' ? 'Dark mode on' : 'Light mode on');
   });
+
+  /* ====================== HOME: BOOKSHELF ====================== */
+  function shelfTrips() { return tripIds().filter(function (tid) { return tripStubs(tid).length; }); }
+  function bookHTML(tid, i) {
+    var list = tripStubs(tid), tr = trip(tid), cs = countries(list), n = list.length, h = Math.min(214, 168 + n * 6);
+    var tilt = [0, -2.5, 0, 3, 0, -1.5][i % 6];
+    var peek = list.slice(0, 3).map(function (t, k) { return '<span class="sb-pk" style="--k:' + k + '">' + ticketHTML(t, 'sq') + '</span>'; }).join('');
+    return '<button class="sbook" data-album="' + tid + '" style="--c:' + tr.color + ';--ink:' + inkFor(tr.color) + ';--h:' + h + 'px;--tilt:' + tilt + 'deg" aria-label="Open the stamp album: ' + esc(tr.name) + ', ' + plural(n, 'stamp') + '">' +
+      '<span class="sb-peek" aria-hidden="true">' + peek + '</span>' +
+      '<span class="sb-book"><span class="sb-pages" aria-hidden="true"></span><span class="sb-cover"><span class="sb-spine" aria-hidden="true"></span>' +
+      '<span class="sb-ph"><span class="phx">' + photoHTML(list[0]) + '</span></span>' +
+      '<span class="sb-tx"><b>' + esc(tr.name) + '</b><small>' + plural(n, 'stamp') + '</small><span class="sb-fl">' + cs.slice(0, 3).map(flagHTML).join('') + '</span></span></span></span></button>';
+  }
+  function renderShelf(anim) {
+    var ids = shelfTrips(), el = $('#bshelf'); if (!el) return;
+    var items = ids.map(bookHTML).concat(['<button class="sbook add" id="shelfAdd" aria-label="Start a new trip book"><span class="sb-book"><span class="sb-cover"><span class="sb-plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span><span class="sb-tx"><b>New book</b><small>Start a trip</small></span></span></span></button>']);
+    var html = '';
+    for (var r = 0; r < items.length; r += 3) html += '<div class="bs-row"><div class="bs-books">' + items.slice(r, r + 3).join('') + '</div><div class="bs-plank" aria-hidden="true"></div></div>';
+    el.innerHTML = html;
+    var n = S.tickets.length;
+    $('#shelfMeta').textContent = plural(ids.length, 'book') + ' · ' + plural(n, 'stamp') + ' · ' + plural(countries().length, 'country', 'countries');
+    if (anim !== false && !RM) each(el.querySelectorAll('.sbook'), function (b, i) {
+      b.animate([{ transform: 'translateY(-60px) rotate(' + (i % 2 ? 8 : -8) + 'deg)', opacity: 0 }, { transform: 'translateY(6px)', opacity: 1, offset: .7 }, { transform: 'none', opacity: 1 }], { duration: 800, delay: 120 + i * 80, easing: 'cubic-bezier(.3,.7,.3,1)', fill: 'backwards' });
+    });
+  }
+  $('#bshelf').addEventListener('click', function (e) {
+    if (e.target.closest('#shelfAdd')) { openNewBook(); return; }
+    var b = e.target.closest('[data-album]'); if (b) openAlbum(b.dataset.album, b.querySelector('.sb-book'));
+  });
+
+  /* ====================== STAMP ALBUM (opens from a book) ====================== */
+  var album = $('#album'), alPages = $('#alPages'), AL = { tid: null, src: null };
+  var LAYOUTS = {
+    1: [[50, 46, 76, 'port', -2]],
+    2: [[36, 30, 58, 'port', -4], [60, 74, 72, 'land', 3]],
+    3: [[32, 27, 54, 'port', -3], [76, 23, 42, 'sq', 5], [52, 76, 74, 'land', -2]],
+    4: [[30, 25, 52, 'port', -4], [76, 19, 42, 'sq', 4], [78, 57, 40, 'port', 3], [33, 81, 58, 'land', -2]]
+  };
+  function albumPages(tid) {
+    var list = tripStubs(tid).slice().reverse(), groups = [], cur = null;
+    list.forEach(function (t) { var k = cityKey(t); if (!cur || cur.k !== k || cur.items.length >= 4) { cur = { k: k, items: [] }; groups.push(cur); } cur.items.push(t); });
+    return groups;
+  }
+  function pageHTML(g, pi, total) {
+    var t0 = g.items[0], d = ym(t0), L = LAYOUTS[g.items.length];
+    var stamps = g.items.map(function (t, k) {
+      var s = L[k], tape = (pi + k) % 3 === 0;
+      return '<button class="al-st' + (tape ? ' taped' : '') + '" data-id="' + t.id + '" style="left:' + s[0] + '%;top:' + s[1] + '%;width:' + s[2] + '%;--r:' + s[4] + 'deg" aria-label="' + esc(label(t)) + '">' + ticketHTML(t, s[3]) + '</button>';
+    }).join('');
+    var note = g.items.filter(function (t) { return t.caption; })[0];
+    return '<section class="al-page" aria-label="Page ' + (pi + 1) + ' of ' + total + ': ' + esc(t0.city) + '"><div class="al-paper">' +
+      '<header class="al-ph"><b>' + esc(t0.city) + '</b><span>' + flagHTML(t0.country) + esc(t0.country) + ' · ' + d.mon + ' ' + d.y + '</span></header>' +
+      '<div class="al-area">' + stamps + '</div>' +
+      (note ? '<p class="al-note">“' + esc(note.caption) + '”</p>' : '') +
+      '<span class="al-no">' + String(pi + 1).padStart(2, '0') + '</span></div></section>';
+  }
+  function albumTurn() {
+    var w = alPages.clientWidth || 1, x = alPages.scrollLeft, pages = alPages.children, cur = Math.round(x / w);
+    for (var i = 0; i < pages.length; i++) {
+      var d = (pages[i].offsetLeft - x) / w;
+      if (RM) continue;
+      var c = Math.max(-1, Math.min(1, d));
+      pages[i].firstChild.style.transform = 'perspective(1400px) rotateY(' + (c < 0 ? c * 70 : c * 18).toFixed(2) + 'deg) translateZ(' + (-Math.abs(c) * 40).toFixed(1) + 'px)';
+      pages[i].firstChild.style.opacity = (1 - Math.max(0, Math.abs(c) - .55) * 1.6).toFixed(3);
+    }
+    $('#alPage').textContent = 'Page ' + (cur + 1) + ' of ' + pages.length;
+    each($('#alDots').children, function (dt, i) { dt.classList.toggle('on', i === cur); });
+  }
+  alPages.addEventListener('scroll', function () { requestAnimationFrame(albumTurn); }, { passive: true });
+  function openAlbum(tid, srcEl, srcRect) {
+    if (!tripStubs(tid).length) return;
+    closeDetail(true);
+    AL.tid = tid; AL.src = srcEl || null;
+    var tr = trip(tid), list = tripStubs(tid), groups = albumPages(tid);
+    $('#alK').textContent = tripRange(list) + ' · ' + plural(list.length, 'stamp');
+    $('#alName').textContent = tr.name;
+    alPages.innerHTML = groups.map(function (g, i) { return pageHTML(g, i, groups.length); }).join('');
+    $('#alDots').innerHTML = groups.map(function () { return '<i></i>'; }).join('');
+    $('#alCover').innerHTML = '<span class="ac-ph"><span class="phx">' + photoHTML(list[0]) + '</span></span><span class="ac-tx"><small>STAMP ALBUM · ' + ym(list[list.length - 1]).y + '</small><b>' + esc(tr.name) + '</b><span>' + esc(countries(list).join(' · ')) + '</span></span>';
+    $('#alCover').style.setProperty('--c', tr.color); $('#alCover').style.setProperty('--ink', inkFor(tr.color));
+    album.style.setProperty('--c', tr.color);
+    album.hidden = false; alPages.scrollLeft = 0; albumTurn();
+    var bookEl = $('#alBook'), cover = $('#alCover');
+    cover.hidden = false; cover.style.transform = '';
+    if (RM) { cover.hidden = true; return; }
+    album.animate([{ backgroundColor: 'rgba(28,22,18,0)' }, { backgroundColor: 'rgba(28,22,18,1)' }], { duration: 500, easing: 'ease-out', fill: 'backwards' });
+    var R = srcRect || (srcEl && visible(srcEl) ? srcEl.getBoundingClientRect() : null), B = bookEl.getBoundingClientRect();
+    if (R && B.width) {
+      var sx = R.width / B.width, sy = R.height / B.height, dx = (R.left + R.width / 2) - (B.left + B.width / 2), dy = (R.top + R.height / 2) - (B.top + B.height / 2);
+      bookEl.animate([{ transform: 'translate(' + dx + 'px,' + dy + 'px) scale(' + sx + ',' + sy + ') rotate(-4deg)' }, { transform: 'translate(0,-30px) scale(1.02) rotate(1deg)', offset: .7 }, { transform: 'none' }], { duration: 760, easing: 'cubic-bezier(.3,.7,.2,1)', fill: 'backwards' });
+    } else bookEl.animate([{ transform: 'translateY(60%) scale(.6)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 600, easing: SPRING, fill: 'backwards' });
+    var op = cover.animate([{ transform: 'perspective(1600px) rotateY(0deg)' }, { transform: 'perspective(1600px) rotateY(-165deg)' }], { duration: 950, delay: 700, easing: 'cubic-bezier(.6,0,.25,1)', fill: 'forwards' });
+    op.onfinish = function () { cover.hidden = true; op.cancel(); };
+    each(alPages.querySelectorAll('.al-page:first-child .al-st'), function (s, i) { s.animate([{ transform: 'translate(-50%,-50%) rotate(var(--r)) scale(1.6)', opacity: 0 }, { transform: 'translate(-50%,-50%) rotate(var(--r)) scale(.94)', opacity: 1, offset: .7 }, { transform: 'translate(-50%,-50%) rotate(var(--r)) scale(1)', opacity: 1 }], { duration: 520, delay: 1350 + i * 140, easing: 'cubic-bezier(.5,0,.6,1)', fill: 'backwards' }); });
+    each(album.querySelectorAll('.al-top, .al-foot'), function (el, i) { el.animate([{ opacity: 0, transform: 'translateY(' + (i ? 20 : -20) + 'px)' }, { opacity: 1, transform: 'none' }], { duration: 600, delay: 500, easing: EASE, fill: 'backwards' }); });
+    setTimeout(function () { $('#alClose').focus({ preventScroll: true }); }, 400);
+  }
+  function closeAlbum(instant) {
+    if (album.hidden) return;
+    var done = function () { album.hidden = true; alPages.innerHTML = ''; var s = AL.src; if (!instant && s && s.isConnected) { var b = s.closest('button'); if (b) b.focus({ preventScroll: true }); } };
+    if (instant || RM) { done(); return; }
+    var bookEl = $('#alBook'), R = AL.src && visible(AL.src) ? AL.src.getBoundingClientRect() : null, B = bookEl.getBoundingClientRect();
+    if (R && B.width) bookEl.animate([{ transform: 'none' }, { transform: 'translate(' + ((R.left + R.width / 2) - (B.left + B.width / 2)) + 'px,' + ((R.top + R.height / 2) - (B.top + B.height / 2)) + 'px) scale(' + (R.width / B.width) + ',' + (R.height / B.height) + ')', opacity: .4 }], { duration: 520, easing: 'cubic-bezier(.6,0,.4,1)', fill: 'forwards' });
+    album.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 520, easing: 'ease-in', fill: 'forwards' }).onfinish = function () { album.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); }); done(); };
+  }
+  $('#alClose').addEventListener('click', function () { closeAlbum(); });
+  $('#alPlay').addEventListener('click', function () { var tid = AL.tid; closeAlbum(true); pickReplay(tid); });
+  $('#alPrev').addEventListener('click', function () { alPages.scrollBy({ left: -alPages.clientWidth, behavior: RM ? 'auto' : 'smooth' }); });
+  $('#alNext').addEventListener('click', function () { alPages.scrollBy({ left: alPages.clientWidth, behavior: RM ? 'auto' : 'smooth' }); });
+  alPages.addEventListener('click', function (e) { var b = e.target.closest('.al-st'); if (b) openDetail(byId(b.dataset.id), b.querySelector('.tk-body'), parseFloat(b.style.getPropertyValue('--r')) || 0); });
+  document.addEventListener('keydown', function (e) {
+    if (album.hidden || !$('#detail').hidden) return;
+    if (e.key === 'Escape') { closeAlbum(); e.stopPropagation(); e.preventDefault(); }
+    else if (e.key === 'ArrowRight') { $('#alNext').click(); e.preventDefault(); }
+    else if (e.key === 'ArrowLeft') { $('#alPrev').click(); e.preventDefault(); }
+  }, true);
+
+  /* ====================== STAMPS TAB: everything scattered ====================== */
+  var STM = { seed: 7 };
+  function rnd(seed) { var x = Math.sin(seed * 9301.7 + 49297.3) * 233280; return x - Math.floor(x); }
+  function stampLayout(list) {
+    var W = 100, cols = 3, cw = W / cols, out = [], y = 4;
+    var shapes = ['port', 'sq', 'land'];
+    for (var i = 0; i < list.length; i++) {
+      var col = i % cols, row = Math.floor(i / cols), r = rnd(STM.seed * 31 + i * 7.3);
+      var shape = list[i].shape === 'land' && r > .35 ? 'land' : list[i].shape === 'port' ? 'port' : shapes[Math.floor(r * 3)];
+      var w = shape === 'land' ? 40 + r * 8 : shape === 'port' ? 27 + r * 6 : 29 + r * 6;
+      var x = col * cw + cw / 2 + (rnd(STM.seed + i * 3.1) - .5) * 14;
+      var yy = row * 168 + 96 + (rnd(STM.seed * 3 + i) - .5) * 46 + (col === 1 ? 34 : 0);
+      out.push({ x: Math.max(w / 2, Math.min(100 - w / 2, x)), y: yy, w: w, shape: shape, rot: (rnd(STM.seed * 5 + i * 1.7) - .5) * 26, z: Math.floor(rnd(STM.seed + i * 11) * 20) });
+    }
+    return out;
+  }
+  function renderStamps(flashId, shuffle) {
+    var list = S.tickets.slice(), board = $('#stmBoard'); if (!board) return;
+    var old = {};
+    if (shuffle) each(board.querySelectorAll('.stm-st'), function (b) { old[b.dataset.id] = b.getBoundingClientRect(); });
+    var L = stampLayout(list);
+    board.style.height = (Math.ceil(list.length / 3) * 168 + 150) + 'px';
+    board.innerHTML = list.map(function (t, i) { var p = L[i]; return '<button class="stm-st" data-id="' + t.id + '" style="left:' + p.x.toFixed(2) + '%;top:' + p.y.toFixed(0) + 'px;width:' + p.w.toFixed(1) + '%;--r:' + p.rot.toFixed(1) + 'deg;z-index:' + p.z + '" aria-label="' + esc(label(t)) + '">' + ticketHTML(t, p.shape) + '</button>'; }).join('');
+    $('#stmMeta').textContent = plural(list.length, 'stamp') + ' · ' + plural(cityKeys().length, 'city', 'cities');
+    if (RM) return;
+    each(board.querySelectorAll('.stm-st'), function (b, i) {
+      var o = old[b.dataset.id];
+      if (shuffle && o) {
+        var n = b.getBoundingClientRect();
+        b.animate([{ translate: (o.left - n.left) + 'px ' + (o.top - n.top) + 'px', rotate: ((i % 2 ? 1 : -1) * 30) + 'deg' }, { translate: '0 0', rotate: '0deg' }], { duration: 900, delay: i * 25, easing: 'cubic-bezier(.3,.8,.25,1)' });
+      } else if (b.dataset.id === flashId) {
+        b.animate([{ transform: 'translate(-50%,-50%) rotate(var(--r)) scale(2.4)', opacity: 0 }, { transform: 'translate(-50%,-50%) rotate(var(--r)) scale(.9)', opacity: 1, offset: .65 }, { transform: 'translate(-50%,-50%) rotate(var(--r)) scale(1)', opacity: 1 }], { duration: 700, delay: 350, easing: 'cubic-bezier(.5,0,.7,1)', fill: 'backwards' });
+        setTimeout(function () { b.scrollIntoView({ block: 'center', behavior: 'smooth' }); b.classList.add('fresh'); setTimeout(function () { b.classList.remove('fresh'); }, 2400); }, 50);
+      } else if (!shuffle) {
+        b.animate([{ translate: ((rnd(i) - .5) * 160) + 'px -120px', rotate: ((rnd(i + 3) - .5) * 90) + 'deg', opacity: 0 }, { translate: '0 0', rotate: '0deg', opacity: 1 }], { duration: 750, delay: 60 + i * 40, easing: 'cubic-bezier(.3,.8,.3,1)', fill: 'backwards' });
+      }
+    });
+  }
+  $('#stmBoard').addEventListener('click', function (e) { var b = e.target.closest('.stm-st'); if (b) openDetail(byId(b.dataset.id), b.querySelector('.tk-body'), parseFloat(b.style.getPropertyValue('--r')) || 0); });
+  $('#stmShuffle').addEventListener('click', function () { STM.seed = Math.floor(Math.random() * 9999); renderStamps(null, true); });
+  $('#stmLucky').addEventListener('click', function () {
+    var bs = $('#stmBoard').querySelectorAll('.stm-st'); if (!bs.length) return;
+    var b = bs[Math.floor(Math.random() * bs.length)];
+    b.scrollIntoView({ block: 'center', behavior: RM ? 'auto' : 'smooth' });
+    if (RM) { openDetail(byId(b.dataset.id), b.querySelector('.tk-body'), 0); return; }
+    setTimeout(function () {
+      b.classList.add('fresh');
+      b.animate([{ scale: '1' }, { scale: '1.18' }, { scale: '.96' }, { scale: '1.1' }, { scale: '1' }], { duration: 700, easing: 'ease-in-out' }).onfinish = function () { b.classList.remove('fresh'); openDetail(byId(b.dataset.id), b.querySelector('.tk-body'), parseFloat(b.style.getPropertyValue('--r')) || 0); };
+    }, 450);
+  });
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
     if (!auth.hidden) { store('tapak.welcomed', true); closeAuth(); }
@@ -3922,16 +4270,18 @@ img{-webkit-user-drag:none;user-select:none}
   });
 
   /* ====================== TABS ====================== */
-  var SCREENS = { home: '#s-home', map: '#s-map', make: '#s-make', newbook: '#s-newbook', stubs: '#s-stubs', profile: '#s-recap' };
+  var SCREENS = { home: '#s-home', map: '#s-map', make: '#s-make', newbook: '#s-newbook', stubs: '#s-stubs', stamps: '#s-stamps', profile: '#s-recap' };
   function showTab(name, flashId) {
     closeDetail(true); closeSheet(); closeBook(true);
     S.tab = name;
     Object.keys(SCREENS).forEach(function (k) { $(SCREENS[k]).hidden = k !== name; });
-    each(document.querySelectorAll('.tab[data-tab]'), function (b) { if (b.dataset.tab === name) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+    each(document.querySelectorAll('.tab[data-tab]'), function (b) { if (b.dataset.tab === name || (name === 'stubs' && b.dataset.tab === 'stamps')) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
     var sc = $(SCREENS[name]); if (name !== 'map') { sc.style.scrollBehavior = 'auto'; sc.scrollTop = 0; sc.style.scrollBehavior = ''; }
     if (name === 'stubs') { setView(S.view); if (flashId) renderAll(flashId); } else stopShelf();
+    if (name === 'stamps') renderStamps(flashId);
+    closeAlbum(true);
     if (name === 'map') mapEnter();
-    if (name === 'home') { layoutDeck(null, true); requestAnimationFrame(arcRecenter); }
+    if (name === 'home') { layoutDeck(null, true); renderShelf(); }
     if (name !== 'map') sc.animate([{ transform: 'translateY(18px)' }, { transform: 'none' }], { duration: D(450), easing: EASE });
     store('tapak.tab', name);
   }
