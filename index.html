@@ -1091,6 +1091,21 @@ img{-webkit-user-drag:none;user-select:none}
 .lg-go{align-self:center;margin-top:0}
 .landing.torn .lg-mark{transition:transform .8s var(--ease)}
 
+/* memory space as a 3D ring */
+.mx-view{perspective:820px;perspective-origin:50% 36%}
+.mx-world{top:53%}
+.mx-slot{backface-visibility:visible;will-change:transform,opacity}
+.mx-card{left:-62px;top:-96px;width:124px;padding:7px 7px 8px;border-radius:18px;gap:5px;transition:box-shadow .4s}
+.mx-card .mx-ph{border-radius:12px}
+.mx-card .mx-tx b{font-size:11.5px}
+.mx-card .mx-tx span{font-size:9.5px}
+.mx-card .mx-play{width:24px;height:24px}
+.mx-card .mx-cat{width:19px;height:19px}
+.mx-slot.front .mx-card{box-shadow:inset 0 1px 0 rgba(255,255,255,.8),inset 0 0 0 1.5px rgba(255,255,255,.75),0 0 0 4px rgba(255,217,199,.35),0 30px 50px -18px rgba(0,0,0,.6)}
+.mx-floor{position:absolute;left:0;top:0;border-radius:50%;transform:translate(-50%,-50%) translateY(110px) rotateX(90deg);background:radial-gradient(closest-side,rgba(255,255,255,.22),rgba(255,255,255,.06) 62%,rgba(255,255,255,0) 64%,rgba(255,255,255,.12) 66%,rgba(255,255,255,0) 70%);pointer-events:none}
+.mx-hint #spNow{font:600 18px/1.1 var(--serif);font-size:18px}
+.mx-hint small{display:block}
+
 </style>
 
 <div class="stage">
@@ -1307,7 +1322,6 @@ img{-webkit-user-drag:none;user-select:none}
         <h2 id="recapH">16 happy memories</h2>
         <p id="recapP">Watch it as an Instagram-style story or a short travel reel.</p>
         <div class="rp-pair"><button class="primary" id="playRecap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"></path></svg>Replay my 2026</button></div>
-        <div class="rp-types"><button type="button" class="rp-chip" id="playIG"><span class="rp-dot ig" aria-hidden="true"></span>Story</button><button type="button" class="rp-chip" id="playReel"><span class="rp-dot reel" aria-hidden="true"></span>Travel reel</button></div>
       </div>
       <button class="spacecard" id="openSpace" type="button"><span class="sc-art" id="scArt" aria-hidden="true"></span><span class="sc-tx"><span class="eyebrow">New</span><b>Step into your memory space</b><span>Every stub floats around you as a glass card. Drag or tilt your phone to look around.</span></span><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"></path></svg></i></button>
       <div class="bignums" id="bigNums"></div>
@@ -1408,7 +1422,7 @@ img{-webkit-user-drag:none;user-select:none}
         <button class="glassbtn" id="spClose" aria-label="Leave memory space"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button>
         <div class="mx-title"><span>Memory space</span><b id="spTitle">Your 2026, all around you</b></div>
       </div>
-      <div class="mx-hint"><span id="spCount"></span><small>Drag or tilt to look around. Tap a memory to open it.</small></div>
+      <div class="mx-hint"><span id="spNow"></span><small><span id="spCount"></span> · swipe to spin the circle</small></div>
     </div>
 
     <!-- DETAIL -->
@@ -3183,8 +3197,6 @@ img{-webkit-user-drag:none;user-select:none}
     $('#recapCollage').innerHTML = S.tickets.slice(0, 3).map(function (t, i) { return '<div style="position:absolute;width:108px;right:' + (i * 18) + 'px;top:' + (i * 30) + 'px;transform:rotate(' + [12, -6, 4][i] + 'deg)">' + ticketHTML(t, 'port') + '</div>'; }).join('');
   }
   $('#playRecap').addEventListener('click', function () { pickReplay(null); });
-  $('#playIG').addEventListener('click', function () { openIG(null); });
-  $('#playReel').addEventListener('click', function () { openReel(null); });
   $('#trips').addEventListener('click', function (e) { var b = e.target.closest('.tripcard'); if (b) pickReplay(b.dataset.trip); });
 
   /* story player: shows all, then one by one */
@@ -3401,43 +3413,67 @@ img{-webkit-user-drag:none;user-select:none}
   /* ====================== MEMORY SPACE (floating glass cards) ====================== */
   var SP = { yaw: 0, pitch: 0, vy: 0, vp: 0, drag: null, raf: 0, t0: 0, tilt: null, moved: false };
   var space = $('#space'), spWorld = $('#spWorld'), spBg = $('#spBg');
+  /* the memories sit on a 3D ring; swipe to spin it, cards always turn to face you */
+  var RING = { n: 0, step: 0, R: 300, idle: 0, front: -1 };
   function spaceCards() {
-    var list = S.tickets.slice(0, 18), n = list.length, R = 380, ARC = 176;
+    var list = S.tickets.slice(0, 18), n = list.length;
+    RING.n = n; RING.step = n ? 360 / n : 0; RING.R = Math.max(150, Math.min(275, n * 17));
     spWorld.innerHTML = list.map(function (t, i) {
-      var a = (n > 1 ? i / (n - 1) - .5 : 0) * ARC, far = i % 3 === 1, y = [-175, 30, 190][i % 3] + (i % 2 ? 18 : -12), d = ym(t), c = CATS[t.cat] || CATS.fun;
-      return '<div class="mx-slot' + (far ? ' far' : '') + '" style="transform:rotateY(' + a.toFixed(1) + 'deg) translateZ(-' + (far ? R + 190 : R) + 'px) translateY(' + (far ? y * 1.35 : y) + 'px)">' +
+      var d = ym(t), c = CATS[t.cat] || CATS.fun, y = 0;
+      return '<div class="mx-slot" data-a="' + (i * RING.step).toFixed(3) + '" data-y="' + y + '">' +
         '<button class="mx-card" data-id="' + t.id + '" style="--bob:' + (i * .37 % 2).toFixed(2) + 's" aria-label="' + esc(label(t)) + '">' +
         '<span class="mx-ph"><span class="phx">' + photoHTML(t) + '</span></span>' +
         '<span class="mx-tx"><b>' + esc(t.place) + '</b><span>' + esc(t.city) + ' · ' + d.mon + ' ' + d.y + '</span></span>' +
         '<span class="mx-bar"><i style="width:' + (30 + (i * 23) % 60) + '%;background:' + c.color + '"></i></span>' +
         '<span class="mx-ctl"><span class="mx-cat" style="color:' + c.color + '">' + catIcon(t.cat) + '</span><span class="mx-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></span><span class="mx-heart' + (isFav(t.id) ? ' on' : '') + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg></span></span>' +
         '</button></div>';
-    }).join('');
+    }).join('') + '<div class="mx-floor" aria-hidden="true" style="width:' + (RING.R * 2.6) + 'px;height:' + (RING.R * 2.6) + 'px"></div>';
     var bgT = byId('j2') || S.tickets[0];
     spBg.innerHTML = '<span class="phx">' + photoHTML(bgT) + '</span>';
-    $('#spCount').textContent = plural(n, 'memory', 'memories') + ' around you';
+    $('#spCount').textContent = plural(n, 'memory', 'memories');
+    RING.front = -1;
   }
   function spFrame(ts) {
     SP.raf = requestAnimationFrame(spFrame);
-    if (!SP.t0) SP.t0 = ts;
+    var step = RING.step || 1;
     if (!SP.drag) {
-      SP.yaw += SP.vy; SP.pitch += SP.vp; SP.vy *= .94; SP.vp *= .9;
-      if (!RM) SP.yaw += Math.sin(ts / 4000) * .03; /* gentle drift */
-      if (SP.yaw > 74) SP.yaw += (74 - SP.yaw) * .12; if (SP.yaw < -74) SP.yaw += (-74 - SP.yaw) * .12;
-      if (SP.tilt) { SP.yaw += (SP.tilt.y - SP.yaw) * .04 * 0; SP.pitch += (SP.tilt.p - SP.pitch) * .06; }
-      SP.pitch += (0 - SP.pitch) * .02;
+      SP.yaw += SP.vy; SP.vy *= .95; SP.pitch += SP.vp; SP.vp *= .9;
+      if (SP.tilt) SP.pitch += (SP.tilt.p - SP.pitch) * .06;
+      SP.pitch += (0 - SP.pitch) * .03;
+      if (Math.abs(SP.vy) < .35) {
+        /* settle so one memory faces you, then drift slowly round the circle */
+        var target = Math.round(SP.yaw / step) * step;
+        SP.yaw += (target - SP.yaw) * .07;
+        if (!RM && ts - RING.idle > 3200) { SP.vy = step * .052; RING.idle = ts; }
+      }
+    } else RING.idle = ts;
+    SP.pitch = Math.max(-16, Math.min(16, SP.pitch));
+    var R = RING.R, tilt = -22 + SP.pitch;
+    spWorld.style.transform = 'translateZ(' + (-R - 120) + 'px) rotateX(' + tilt.toFixed(2) + 'deg) rotateY(' + SP.yaw.toFixed(2) + 'deg)';
+    var slots = spWorld.children, best = -1, bc = -2;
+    for (var i = 0; i < RING.n; i++) {
+      var s = slots[i], a = +s.dataset.a, eff = (a + SP.yaw) * Math.PI / 180, cv = Math.cos(eff);
+      s.style.transform = 'rotateY(' + a + 'deg) translateZ(' + R + 'px) translateY(' + s.dataset.y + 'px) rotateY(' + (-(a + SP.yaw)).toFixed(2) + 'deg) rotateX(' + (-tilt).toFixed(2) + 'deg)';
+      var k = (cv + 1) / 2;
+      s.style.opacity = (.28 + .72 * k).toFixed(3);
+      s.firstChild.style.filter = 'brightness(' + (.55 + .45 * k).toFixed(3) + ') saturate(' + (.6 + .4 * k).toFixed(3) + ')';
+      s.style.pointerEvents = cv > .3 ? '' : 'none';
+      if (cv > bc) { bc = cv; best = i; }
     }
-    SP.pitch = Math.max(-18, Math.min(18, SP.pitch)); SP.yaw = Math.max(-100, Math.min(100, SP.yaw));
-    spWorld.style.transform = 'translateZ(250px) rotateX(' + SP.pitch.toFixed(2) + 'deg) rotateY(' + SP.yaw.toFixed(2) + 'deg)';
-    spBg.style.transform = 'translateX(' + (SP.yaw / 74 * 7).toFixed(2) + '%) translateY(' + (SP.pitch * .6).toFixed(2) + '%) scale(1.18)';
+    if (best !== RING.front && best >= 0) {
+      RING.front = best;
+      each(slots, function (x, i) { x.classList.toggle('front', i === best); });
+      var t = byId(slots[best].firstChild.dataset.id); if (t) $('#spNow').textContent = t.place + ' · ' + t.city;
+    }
+    spBg.style.transform = 'translateX(' + (Math.sin(SP.yaw * Math.PI / 180) * 5).toFixed(2) + '%) translateY(' + (SP.pitch * .5).toFixed(2) + '%) scale(1.18)';
   }
   function openSpace() {
-    spaceCards(); space.hidden = false; SP.yaw = -40; SP.pitch = 0; SP.vy = 2.6;
+    spaceCards(); space.hidden = false; SP.yaw = -RING.step * 3; SP.pitch = 0; SP.vy = RING.step * .16; RING.idle = performance.now();
     cancelAnimationFrame(SP.raf); SP.raf = requestAnimationFrame(spFrame);
     if (!RM) {
       space.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500, easing: 'ease-out' });
       spBg.animate([{ filter: 'blur(14px) brightness(.6)' }, { filter: 'blur(0) brightness(1)' }], { duration: 1400, easing: EASE });
-      each(spWorld.querySelectorAll('.mx-card'), function (c, i) { c.animate([{ opacity: 0, transform: 'scale(.4) translateZ(-300px)' }, { opacity: 1, transform: 'none' }], { duration: 1100, delay: 200 + i * 55, easing: SPRING, fill: 'backwards' }); });
+      each(spWorld.querySelectorAll('.mx-card'), function (c, i) { c.animate([{ opacity: 0, transform: 'scale(.3) translateY(80px)' }, { opacity: 1, transform: 'none' }], { duration: 1100, delay: 200 + i * 55, easing: SPRING, fill: 'backwards' }); });
       each(space.querySelectorAll('.mx-top, .mx-hint'), function (el, i) { el.animate([{ opacity: 0, transform: 'translateY(' + (i ? 20 : -20) + 'px)' }, { opacity: 1, transform: 'none' }], { duration: 700, delay: 500, easing: EASE, fill: 'backwards' }); });
     }
     setTimeout(function () { $('#spClose').focus({ preventScroll: true }); }, 300);
@@ -3458,7 +3494,7 @@ img{-webkit-user-drag:none;user-select:none}
     if (!SP.drag) return;
     var dx = e.clientX - SP.drag.lx, dy = e.clientY - SP.drag.ly; SP.drag.lx = e.clientX; SP.drag.ly = e.clientY;
     if (Math.abs(e.clientX - SP.drag.x) + Math.abs(e.clientY - SP.drag.y) > 6) SP.moved = true;
-    SP.yaw += dx * .22; SP.pitch -= dy * .12; SP.vy = dx * .22; SP.vp = -dy * .12;
+    SP.yaw += dx * .32; SP.pitch -= dy * .08; SP.vy = dx * .32; SP.vp = -dy * .08;
   });
   function spUp(e) {
     if (!SP.drag) return; SP.drag = null; space.classList.remove('grab');
@@ -3467,7 +3503,7 @@ img{-webkit-user-drag:none;user-select:none}
   space.addEventListener('pointerup', spUp);
   space.addEventListener('pointercancel', function () { SP.drag = null; space.classList.remove('grab'); });
   space.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowLeft') { SP.vy -= 3; e.preventDefault(); } else if (e.key === 'ArrowRight') { SP.vy += 3; e.preventDefault(); }
+    if (e.key === 'ArrowLeft') { SP.yaw -= RING.step; RING.idle = performance.now(); e.preventDefault(); } else if (e.key === 'ArrowRight') { SP.yaw += RING.step; RING.idle = performance.now(); e.preventDefault(); }
     else if (e.key === 'Escape' && $('#detail').hidden) { closeSpace(); e.stopPropagation(); }
     else if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('.mx-card')) { openDetail(byId(e.target.closest('.mx-card').dataset.id), e.target.closest('.mx-card'), 0); e.preventDefault(); }
   });
